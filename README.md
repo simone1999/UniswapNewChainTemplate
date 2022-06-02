@@ -22,6 +22,7 @@ this is th Frontend and to use it with a custom Uniswap following parameters nee
 <lp_token_symbol>: symbol of the liquidity provision token e.g.: SWAP-LP
 <lp_token_name>: name of the Liquidity Provision token e.g.: Swap-LP-Token
 <site_name>: name of the website, can contain spaces e.g.: Moonbeam-Swap
+<block_explorer>: domain of the block explorer e.g.: brisescan.com
 
 
 also:
