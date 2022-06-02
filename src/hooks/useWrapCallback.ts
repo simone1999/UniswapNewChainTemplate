@@ -44,7 +44,7 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.raw.toString(16)}` });
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} ETH to WETH` });
+                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} <NATIVE_TOKEN_SYMBOL> to <WRAPPED_NATIVE_TOKEN_SYMBOL>` });
                 } catch (error) {
                   console.error('Could not deposit', error);
                 }
@@ -60,7 +60,7 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.raw.toString(16)}`);
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WETH to ETH` });
+                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} <WRAPPED_NATIVE_TOKEN_SYMBOL> to <NATIVE_TOKEN_SYMBOL>` });
                 } catch (error) {
                   console.error('Could not withdraw', error);
                 }
