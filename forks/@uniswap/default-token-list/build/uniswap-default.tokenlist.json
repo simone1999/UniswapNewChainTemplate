@@ -1,0 +1,25 @@
+{
+  "name": "<site_name> Default List",
+  "timestamp": "2022-02-15T18:30:00.000Z",
+  "version": {
+    "major": 10,
+    "minor": 1,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
+  "keywords": [
+    "uniswap",
+    "default"
+  ],
+  "tokens": [
+    {
+      "name": "<wrapped_native_token>",
+      "address": "<native_token_address>",
+      "symbol": "<WRAPPED_NATIVE_TOKEN_SYMBOL>",
+      "decimals": <native_token_decimals>,
+      "chainId": <chain_id>,
+      "logoURI": "<native_token_logo_url>"
+    }
+  ]
+}

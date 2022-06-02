@@ -15,6 +15,7 @@ this is th Frontend and to use it with a custom Uniswap following parameters nee
 <NATIVE_TOKEN_SYMBOL>: symbol of the native token written in caps e.g.: GLMR
 <WRAPPED_NATIVE_TOKEN_SYMBOL>: symbol of the wrapped native token written in caps e.g.: WGLMR
 <native_token>: name of the native token, allowed to contain spaces e.g.: Glimmer
+<native_token_logo_url>: url to a small logo of the native token e.g.: https://s2.coinmarketcap.com/static/img/coins/64x64/6836.png
 <wrapped_native_token>: name of the wrapped native token, allowed to contain spaces e.g.: Wrapped Glimmer
 <native_token_address>: address of the wrapped native Token e.g.: 0xAcc15dC74880C9944775448304B263D191c6077F
 <native_token_decimals>: decimal places of the wrapped native token, mostly 18 e.g.: 18
