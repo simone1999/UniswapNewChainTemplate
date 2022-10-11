@@ -100,6 +100,7 @@
   },
   "dependencies": {
     "@uniswap/default-token-list": "2.0.0",
+    "@unstoppabledomains/resolution": "^8.3.3",
     "dotenv": "^10.0.0",
     "http-server": "14.1.1",
     "web3-utils": "^1.5.3"
