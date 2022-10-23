@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "2.34.0",
     "@uniswap/lib": "^1.1.1",
     "@uniswap/liquidity-staker": "1.0.2",
-    "@uniswap/sdk": "simone1999/icecreamswap-sdk#ae31be404d09bde11d259e4ae97001f19dc9fad1",
+    "@uniswap/sdk": "simone1999/icecreamswap-sdk#0f0ad14a80c90bee1b9c74cf28769b49a74f91d2",
     "@uniswap/token-lists": "1.0.0-beta.19",
     "@uniswap/v2-core": "1.0.1",
     "@uniswap/v2-periphery": "1.1.0-beta.0",

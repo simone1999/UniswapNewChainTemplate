@@ -283,6 +283,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.BITGERT]: 'BITGERT',
   [ChainId.DOGE]: 'DOGE',
   [ChainId.DOKEN]: 'DOKEN',
+  [ChainId.FUSE]: 'FUSE',
 };
 
 export default function Header() {

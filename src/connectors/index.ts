@@ -27,7 +27,7 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [ChainId.BITGERT, ChainId.DOGE, ChainId.DOKEN],
+  supportedChainIds: [ChainId.BITGERT, ChainId.DOGE, ChainId.DOKEN, ChainId.FUSE],
 });
 
 // mainnet only
