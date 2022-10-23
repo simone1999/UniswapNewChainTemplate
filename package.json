@@ -77,7 +77,8 @@
     "styled-components": "5.3.0",
     "truffle-plugin-verify": "^0.5.15",
     "typescript": "3.9.10",
-    "wcag-contrast": "3.0.0"
+    "wcag-contrast": "3.0.0",
+    "@unstoppabledomains/resolution": "^8.3.3"
   },
   "resolutions": {
     "@walletconnect/web3-provider": "1.4.1"
@@ -90,8 +91,9 @@
     "start_prebuild": "http-server build -a localhost -p 3001 -o",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "postinstall": "yarn postinstall_linux",
     "postinstall_windows": "yarn copy_forks_windows",
-    "postinstall": "yarn copy_forks",
+    "postinstall_linux": "yarn copy_forks",
     "copy_tokens_windows": "xcopy /Y .\\forks\\@uniswap\\default-token-list\\build\\uniswap-default.tokenlist.json .\\public\\default.tokenlist.json",
     "copy_tokens": "cp ./forks/@uniswap/default-token-list/build/uniswap-default.tokenlist.json ./public/default.tokenlist.json",
     "copy_forks_windows": "xcopy /Y /E /I .\\forks\\@uniswap\\* .\\node_modules\\@uniswap",
@@ -100,9 +102,7 @@
   },
   "dependencies": {
     "@uniswap/default-token-list": "2.0.0",
-    "@unstoppabledomains/resolution": "^8.3.3",
     "dotenv": "^10.0.0",
-    "http-server": "14.1.1",
     "web3-utils": "^1.5.3"
   },
   "eslintConfig": {
