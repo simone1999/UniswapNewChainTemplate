@@ -502,6 +502,31 @@
       "decimals": 18,
       "chainId": 61916,
       "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/doken/assets/0x8e6dAa037b7F130020b30562f1E2a5D02233E6c5/logo.png"
+    },
+
+    {
+      "name": "IceCream",
+      "address": "0x867f08A3ab824b42e8058a1B48e32E1dF205b092",
+      "symbol": "ICE",
+      "decimals": 18,
+      "chainId": 122,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xB999Ea90607a826A3E6E6646B404c3C7d11fa39D/logo.png"
+    },
+    {
+      "name": "Dogecoin",
+      "address": "0x12AA82525DEfF84777fa78578A68ceB854A85f43",
+      "symbol": "DOGE",
+      "decimals": 18,
+      "chainId": 122,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x46a8E16dB8Bb241618873bCA21Ef02F120EA4125/logo.png"
+    },
+    {
+      "name": "Shiba Inu",
+      "address": "0x8687cD1d02A28098571067ddB18F33fEF667C929",
+      "symbol": "SHIB",
+      "decimals": 18,
+      "chainId": 122,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xADF3051f6fbC1f42ee20B2eDb47EA7f6CcaBe978/logo.png"
     }
   ]
 }

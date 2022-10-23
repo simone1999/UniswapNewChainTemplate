@@ -72,6 +72,10 @@ export const DOGE_ICE = new Token(ChainId.DOGE, '0x81bCEa03678D1CEF4830942227720
 export const DOKEN_ICE = new Token(ChainId.DOKEN, '0x54051D9DbE99687867090d95fe15C3D3E35512Ba', 18, 'ICE', 'IceCream');
 export const DOKEN_USDT = new Token(ChainId.DOKEN, '0x8e6dAa037b7F130020b30562f1E2a5D02233E6c5', 18, 'USDT', 'Tether USD');
 
+export const FUSE_ICE = new Token(ChainId.FUSE, '0x867f08A3ab824b42e8058a1B48e32E1dF205b092', 18, 'ICE', 'IceCream');
+export const FUSE_DOGE = new Token(ChainId.FUSE, '0x12AA82525DEfF84777fa78578A68ceB854A85f43', 18, 'DOGE', 'DogeCoin');
+export const FUSE_SHIB = new Token(ChainId.FUSE, '0x8687cD1d02A28098571067ddB18F33fEF667C929', 18, 'SHIB', 'Shiba Inu');
+
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13;
@@ -114,7 +118,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.BITGERT]: [...WETH_ONLY[ChainId.BITGERT], BITGERT_USDC, BITGERT_USDCI, BITGERT_USDT, BITGERT_USDTI, ICE, BITGERT_DAII],
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE, DOKEN_USDT],
-  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE]],
+  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE],
 };
 
 /**
@@ -134,7 +138,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.BITGERT]: [...WETH_ONLY[ChainId.BITGERT], ICE, BITGERT_USDTI],
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE],
-  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE]]
+  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE]
 };
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -148,7 +152,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.BITGERT]: [...WETH_ONLY[ChainId.BITGERT], SPHYNX, BPAD, BROGE, BRZILLA, BTXT, ELTG, EVO, MAP, Miidas, MIR, NUMI, OMNIA, PRDS, RLUNA, VEF, WMF, YOGO, YPC, ICE, TOKYO, BITGERT_USDC, BITGERT_USDT, WOLF, BITGERT_USDTI, BITGERT_3DC, DARRIVAL, BITGERT_ETHERI, BITGERT_DOGECOINI, BITGERT_BNBI, BITGERT_SHIBAI, BITGERT_DAII, BITGERT_USDCI, BITGERT_BUSDI, BITGERT_BASKOM, BITGERT_ABR, BITGERT_LUNG],
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE, DOKEN_USDT],
-  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE]],
+  [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE, FUSE_DOGE, FUSE_SHIB],
 };
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -170,6 +174,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [WETH[ChainId.DOKEN], DOKEN_ICE],
   ],
   [ChainId.FUSE]: [
+    [WETH[ChainId.FUSE], FUSE_ICE],
   ]
 };
 
