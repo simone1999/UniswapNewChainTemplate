@@ -182,7 +182,7 @@
       "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x38EA4741d100cAe9700f66B194777F31919142Ee/logo.png"
     },
     {
-      "name": "Tether USD",
+      "name": "USDT old",
       "address": "0xDe14b85cf78F2ADd2E867FEE40575437D5f10c06",
       "symbol": "USDT",
       "decimals": 18,
@@ -190,7 +190,7 @@
       "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xDe14b85cf78F2ADd2E867FEE40575437D5f10c06/logo.png"
     },
     {
-      "name": "USD Coin",
+      "name": "USDC old",
       "address": "0xcf2DF9377A4e3C10e9EA29fDB8879d74C27FCDE7",
       "symbol": "USDC",
       "decimals": 18,
@@ -317,7 +317,70 @@
       "chainId": 32520,
       "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xbfa6394b9898566652276f1Fb40d65e75787D66f/logo.png"
     },
-
+    {
+      "name": "DAI",
+      "address": "0xfA9343C3897324496A05fC75abeD6bAC29f8A40f",
+      "symbol": "DAI",
+      "decimals": 18,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xfA9343C3897324496A05fC75abeD6bAC29f8A40f/logo.png"
+    },
+    {
+      "name": "Tether USD",
+      "address": "0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D",
+      "symbol": "USDT",
+      "decimals": 6,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D/logo.png"
+    },
+    {
+      "name": "USD Coin",
+      "address": "0x765277EebeCA2e31912C9946eAe1021199B39C61",
+      "symbol": "USDC",
+      "decimals": 6,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x765277EebeCA2e31912C9946eAe1021199B39C61/logo.png"
+    },
+    {
+      "name": "BNB",
+      "address": "0x922D641a426DcFFaeF11680e5358F34d97d112E1",
+      "symbol": "BNB",
+      "decimals": 18,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x922D641a426DcFFaeF11680e5358F34d97d112E1/logo.png"
+    },
+    {
+      "name": "Ethereum",
+      "address": "0x6aB6d61428fde76768D7b45D8BFeec19c6eF91A8",
+      "symbol": "ETH",
+      "decimals": 18,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x6aB6d61428fde76768D7b45D8BFeec19c6eF91A8/logo.png"
+    },
+    {
+      "name": "Dogecoin",
+      "address": "0x80A16016cC4A2E6a2CACA8a4a498b1699fF0f844",
+      "symbol": "DOGE",
+      "decimals": 8,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x80A16016cC4A2E6a2CACA8a4a498b1699fF0f844/logo.png"
+    },
+    {
+      "name": "BUSD",
+      "address": "0x818ec0A7Fe18Ff94269904fCED6AE3DaE6d6dC0b",
+      "symbol": "BUSD",
+      "decimals": 18,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0x818ec0A7Fe18Ff94269904fCED6AE3DaE6d6dC0b/logo.png"
+    },
+    {
+      "name": "Matic",
+      "address": "0xB44a9B6905aF7c801311e8F4E76932ee959c663C",
+      "symbol": "MATIC",
+      "decimals": 18,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xB44a9B6905aF7c801311e8F4E76932ee959c663C/logo.png"
+    },
 
     {
       "name": "Wrapped DOGE",
