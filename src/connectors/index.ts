@@ -6,19 +6,20 @@ import {WalletLinkConnector} from '@web3-react/walletlink-connector';
 // import { FortmaticConnector } from './Fortmatic';
 import {NetworkConnector} from './NetworkConnector';
 import {ChainId} from "@uniswap/sdk";
+import {RPC_URLS} from "../constants/rpc";
 
-const REACT_APP_NETWORK_URL = process.env.REACT_APP_NETWORK_URL;
 // const FORMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 // const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
 
-export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? '1');
+export const DEFAULT_CHAIN_ID: ChainId = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID ?? '1');
 
-if (typeof REACT_APP_NETWORK_URL === 'undefined') {
-  throw new Error(`REACT_APP_NETWORK_URL must be a defined environment variable`);
+if (RPC_URLS[DEFAULT_CHAIN_ID] === "") {
+  throw new Error(`RPC must be defined for DEFAULT_CHAIN_ID=` + DEFAULT_CHAIN_ID);
 }
 
 export const network = new NetworkConnector({
-  urls: { [NETWORK_CHAIN_ID]: REACT_APP_NETWORK_URL },
+  urls: RPC_URLS,
+  defaultChainId: DEFAULT_CHAIN_ID
 });
 
 let networkLibrary: Web3Provider | undefined;
@@ -30,9 +31,9 @@ export const injected = new InjectedConnector({
   supportedChainIds: [ChainId.BITGERT, ChainId.DOGE, ChainId.DOKEN, ChainId.FUSE],
 });
 
-// mainnet only
+// Bitgert only
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 1: REACT_APP_NETWORK_URL },
+  rpc: {[ChainId.BITGERT]: RPC_URLS[ChainId.BITGERT]},
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000,
@@ -52,7 +53,7 @@ export const walletconnect = new WalletConnectConnector({
 
 // mainnet only
 export const walletlink = new WalletLinkConnector({
-  url: REACT_APP_NETWORK_URL,
+  url: RPC_URLS[DEFAULT_CHAIN_ID],
   appName: 'IcecreamSwap',
   // appLogoUrl: '',
 });
