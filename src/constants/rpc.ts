@@ -9,6 +9,6 @@ export const RPC_URLS: { [chainId in ChainId]: string } = {
     [ChainId.KOVAN]: "http://kovan.poa.network:8545",
     [ChainId.BITGERT]: "https://rpc.icecreamswap.com",
     [ChainId.DOGE]: "https://rpc.dogechain.dog",
-    [ChainId.DOKEN]: "https://nyrpc.doken.dev ",
+    [ChainId.DOKEN]: "https://nyrpc.doken.dev",
     [ChainId.FUSE]: "https://rpc.fuse.io",
 }
