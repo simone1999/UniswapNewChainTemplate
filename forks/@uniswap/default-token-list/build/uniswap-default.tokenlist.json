@@ -397,6 +397,14 @@
       "chainId": 32520,
       "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xf390830DF829cf22c53c8840554B98eafC5dCBc2/logo.png"
     },
+    {
+      "name": "Strawberry Token",
+      "address": "0xBEf9087f1cA526755cfe38a9667DCF068E8574C1",
+      "symbol": "STRAWBERRY",
+      "decimals": 9,
+      "chainId": 32520,
+      "logoURI": "https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/bitgert/assets/0xBEf9087f1cA526755cfe38a9667DCF068E8574C1/logo.png"
+    },
 
     {
       "name": "Wrapped DOGE",
