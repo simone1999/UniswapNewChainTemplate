@@ -9,8 +9,8 @@ import {
 } from '../connectors';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
-export const FACTORY_ADDRESS = '0x9E6d21E759A7A288b80eef94E4737D313D31c13f';
-export const ROUTER_ADDRESS = '0xBb5e1777A331ED93E07cF043363e48d320eb96c4';
+export const FACTORY_ADDRESS = '0x00aCC7CaD9D2bF582463430D3d444B0a1169B76c';
+export const ROUTER_ADDRESS = '0x007eAE4be339BF18e8C41E039AB6E59C07e5fA25';
 
 export const LP_TOKEN_NAME = 'icecreamswap.com LP';
 export const LP_TOKEN_SYMBOL = 'ICELP';
@@ -76,6 +76,9 @@ export const FUSE_ICE = new Token(ChainId.FUSE, '0x867f08A3ab824b42e8058a1B48e32
 export const FUSE_DOGE = new Token(ChainId.FUSE, '0x12AA82525DEfF84777fa78578A68ceB854A85f43', 18, 'DOGE', 'DogeCoin');
 export const FUSE_SHIB = new Token(ChainId.FUSE, '0x8687cD1d02A28098571067ddB18F33fEF667C929', 18, 'SHIB', 'Shiba Inu');
 
+export const QUAI_ICE = new Token(ChainId.QUAI_TESTNET, '0x008F456cC99f113A379BB643ABf9487CE24C9BA6', 18, 'ICE', 'IceCream');
+export const QUAI_USDT = new Token(ChainId.QUAI_TESTNET, '0x0034E13833AB7dE36A585ca1C8e82763BA823A96', 18, 'ICE', 'IceCream');
+
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13;
@@ -97,6 +100,7 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.DOGE]: [WETH[ChainId.DOGE]],
   [ChainId.DOKEN]: [WETH[ChainId.DOKEN]],
   [ChainId.FUSE]: [WETH[ChainId.FUSE]],
+  [ChainId.QUAI_TESTNET]: [WETH[ChainId.QUAI_TESTNET]],
 };
 
 export const ETH_NAME_AND_SYMBOL = {
@@ -109,6 +113,7 @@ export const ETH_NAME_AND_SYMBOL = {
   [ChainId.DOGE]: {"name": "Dogecoin", "symbol": "DOGE"},
   [ChainId.DOKEN]: {"name": "DoKEN", "symbol": "DKN"},
   [ChainId.FUSE]: {"name": "Fuse", "symbol": "FUSE"},
+  [ChainId.QUAI_TESTNET]: {"name": "Quai", "symbol": "Quai"},
 }
 
 // used to construct intermediary pairs for trading
@@ -119,6 +124,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE, DOKEN_USDT],
   [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE],
+  [ChainId.QUAI_TESTNET]: [...WETH_ONLY[ChainId.QUAI_TESTNET], QUAI_ICE, QUAI_USDT],
 };
 
 /**
@@ -200,6 +206,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     color: '#010101',
     primary: true,
   },
+  /*
   METAMASK: {
     connector: injected,
     name: 'MetaMask',
@@ -208,6 +215,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     color: '#E8831D',
   },
+  */
   WALLET_CONNECT: {
     connector: walletconnect,
     name: 'WalletConnect',

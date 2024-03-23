@@ -26,7 +26,8 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   32520: 'brisescan.com',
   2000: "explorer.dogechain.dog",
   61916: "explorer.doken.dev",
-  122: "explorer.fuse.io"
+  122: "explorer.fuse.io",
+  9000: "cyprus1.colosseum.quaiscan.io/"
 };
 
 export function getEtherscanLink(

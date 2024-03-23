@@ -7,6 +7,7 @@ import BitgertLogo from '../../assets/images/bitgert-logo.png';
 import DogeLogo from '../../assets/images/doge-logo.png';
 import DokenLogo from '../../assets/images/doken.png';
 import FuseLogo from '../../assets/images/fuse.svg';
+import QuaiLogo from '../../assets/images/quai-logo.png';
 import useHttpLocations from '../../hooks/useHttpLocations';
 import { useActiveWeb3React } from '../../hooks';
 import { WrappedTokenInfo } from '../../state/lists/hooks';
@@ -65,6 +66,8 @@ export default function CurrencyLogo({
       return <StyledEthereumLogo src={DokenLogo} size={size} style={style} />;
     } else if (chainId === ChainIds.FUSE) {
       return <StyledEthereumLogo src={FuseLogo} size={size} style={style} />;
+    } else if (chainId === ChainIds.QUAI_TESTNET) {
+      return <StyledEthereumLogo src={QuaiLogo} size={size} style={style} />;
     } else {
       return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />;
     }

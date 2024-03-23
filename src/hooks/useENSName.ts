@@ -1,3 +1,4 @@
+/*
 import { namehash } from 'ethers/lib/utils';
 import {useMemo, useState} from 'react';
 import { useSingleCallResult } from '../state/multicall/hooks';
@@ -22,10 +23,6 @@ async function reverseUrl(address: string): Promise<string> {
 }
 
 
-/**
- * Does a reverse lookup for an address to find its ENS name.
- * Note this is not the same as looking up an ENS name to find an address.
- */
 export default function useENSName(address?: string): { ENSName: string | null; loading: boolean } {
   const debouncedAddress = useDebounce(address, 200);
 
@@ -60,5 +57,13 @@ export default function useENSName(address?: string): { ENSName: string | null; 
   return {
     ENSName: isUnstoppable? unstoppableUrl: changed ? null : name.result?.[0] ?? null,
     loading: !isUnstoppable && (changed || resolverAddress.loading || name.loading),
+  };
+}
+*/
+
+export default function useENSName(address?: string): { ENSName: string | null; loading: boolean } {
+  return {
+    ENSName: null,
+    loading: false,
   };
 }

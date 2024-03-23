@@ -11,7 +11,7 @@ import {RPC_URLS} from "../constants/rpc";
 // const FORMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 // const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
 
-export const DEFAULT_CHAIN_ID: ChainId = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID ?? '1');
+export const DEFAULT_CHAIN_ID: ChainId = ChainId.QUAI_TESTNET
 
 if (RPC_URLS[DEFAULT_CHAIN_ID] === "") {
   throw new Error(`RPC must be defined for DEFAULT_CHAIN_ID=` + DEFAULT_CHAIN_ID);
@@ -28,12 +28,12 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [ChainId.BITGERT, ChainId.DOGE, ChainId.DOKEN, ChainId.FUSE],
+  supportedChainIds: [ChainId.QUAI_TESTNET],
 });
 
 // Bitgert only
 export const walletconnect = new WalletConnectConnector({
-  rpc: {[ChainId.BITGERT]: RPC_URLS[ChainId.BITGERT]},
+  rpc: {[ChainId.QUAI_TESTNET]: RPC_URLS[ChainId.QUAI_TESTNET]},
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000,
