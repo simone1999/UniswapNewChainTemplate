@@ -169,6 +169,7 @@ const Icon = styled.div`
 
 const activeClassName = 'ACTIVE';
 
+/*
 const StyledNavExternalLink = styled.a`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
@@ -202,6 +203,7 @@ const StyledNavExternalLink = styled.a`
     }
   `};
 `;
+*/
 
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName,
@@ -284,7 +286,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.DOGE]: 'DOGE',
   [ChainId.DOKEN]: 'DOKEN',
   [ChainId.FUSE]: 'FUSE',
-  [ChainId.QUAI_TESTNET]: 'Quai Testnet',
+  [ChainId.QUAI_TESTNET]: 'Quai-Testnet',
 };
 
 export default function Header() {
@@ -318,14 +320,8 @@ export default function Header() {
             pathname.startsWith('/find')
           }
         >
-          {t('pool')}
+          {t('liquidity')}
         </StyledNavLink>
-        <StyledNavExternalLink id={`info-nav-link`} href={"https://info.icecreamswap.com"}>
-          {t('info')}
-        </StyledNavExternalLink>
-        <StyledNavExternalLink id={`bridge-nav-link`} href={"https://bridge.icecreamswap.com"}>
-          {t('bridge')}
-        </StyledNavExternalLink>
       </HeaderLinks>
 
       <HeaderControls>
