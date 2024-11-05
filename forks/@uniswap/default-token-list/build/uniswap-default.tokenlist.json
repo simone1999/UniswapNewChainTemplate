@@ -36,14 +36,6 @@
       "decimals": 18,
       "chainId": 9000,
       "logoURI": ""
-    },
-    {
-      "name": "Iron Age Testnet Memorial Token",
-      "address": "0x0Cb0E86594BbCBCA477e954bbcb4FfE4B1c1CB67",
-      "symbol": "IRONAGE",
-      "decimals": 18,
-      "chainId": 9000,
-      "logoURI": ""
     }
   ]
 }
