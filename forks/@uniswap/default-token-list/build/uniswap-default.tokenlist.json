@@ -15,7 +15,7 @@
   "tokens": [
     {
       "name": "Wrapped Quai",
-      "address": "0x00df9040B44Cd04e137562F8aeFc9e218A1bC42D",
+      "address": "0x002fB83542035482ED201ab3d2bcc85Ec2A41f0D",
       "symbol": "WQUAI",
       "decimals": 18,
       "chainId": 9000,
@@ -23,7 +23,7 @@
     },
     {
       "name": "IceCream",
-      "address": "0x008F456cC99f113A379BB643ABf9487CE24C9BA6",
+      "address": "0x000cFC01FDe5BE0926aD31C427aE3614Bf6AeA9F",
       "symbol": "ICE",
       "decimals": 18,
       "chainId": 9000,
@@ -31,7 +31,7 @@
     },
     {
       "name": "Tether USD",
-      "address": "0x0034E13833AB7dE36A585ca1C8e82763BA823A96",
+      "address": "0x00401F5Cc432f28Ef80C066Fc38C4BC44CC0DdCf",
       "symbol": "USDT",
       "decimals": 18,
       "chainId": 9000,

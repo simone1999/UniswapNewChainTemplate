@@ -9,8 +9,8 @@ import {
 } from '../connectors';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
-export const FACTORY_ADDRESS = '0x1093a2c2D66831616554489715E43676Dcd86068';
-export const ROUTER_ADDRESS = '0x16Fd77Cb22BCE041B25d465BcaC1bB7F510F611F';
+export const FACTORY_ADDRESS = '0x00188A370494B832710E42267bb8ae831f85b3e7';
+export const ROUTER_ADDRESS = '0x006f4c46aC890Fb271a3B8540Ab3179268C14EF4';
 
 export const LP_TOKEN_NAME = 'icecreamswap.com LP';
 export const LP_TOKEN_SYMBOL = 'ICELP';
@@ -76,8 +76,8 @@ export const FUSE_ICE = new Token(ChainId.FUSE, '0x867f08A3ab824b42e8058a1B48e32
 export const FUSE_DOGE = new Token(ChainId.FUSE, '0x12AA82525DEfF84777fa78578A68ceB854A85f43', 18, 'DOGE', 'DogeCoin');
 export const FUSE_SHIB = new Token(ChainId.FUSE, '0x8687cD1d02A28098571067ddB18F33fEF667C929', 18, 'SHIB', 'Shiba Inu');
 
-export const QUAI_ICE = new Token(ChainId.QUAI_TESTNET, '0x008F456cC99f113A379BB643ABf9487CE24C9BA6', 18, 'ICE', 'IceCream');
-export const QUAI_USDT = new Token(ChainId.QUAI_TESTNET, '0x0034E13833AB7dE36A585ca1C8e82763BA823A96', 18, 'USDT', 'Tether USD');
+export const QUAI_ICE = new Token(ChainId.QUAI_TESTNET, '0x000cFC01FDe5BE0926aD31C427aE3614Bf6AeA9F', 18, 'ICE', 'IceCream');
+export const QUAI_USDT = new Token(ChainId.QUAI_TESTNET, '0x00401F5Cc432f28Ef80C066Fc38C4BC44CC0DdCf', 18, 'USDT', 'Tether USD');
 
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
