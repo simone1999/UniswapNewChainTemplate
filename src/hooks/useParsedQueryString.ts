@@ -1,11 +1,13 @@
-import { parse, ParsedQs } from 'qs';
+import { useRouter } from 'next/router';
+import { ParsedQs, parse } from 'qs';
 import { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 
 export default function useParsedQueryString(): ParsedQs {
-  const { search } = useLocation();
+  const { asPath } = useRouter();
+  const search = asPath.split('?')[1] || '';
+
   return useMemo(
-    () => (search && search.length > 1 ? parse(search, { parseArrays: false, ignoreQueryPrefix: true }) : {}),
+    () => (search ? parse(search, { parseArrays: false, ignoreQueryPrefix: true }) : {}),
     [search]
   );
 }

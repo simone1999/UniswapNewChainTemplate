@@ -5,7 +5,7 @@ import { useTransactionAdder } from '../state/transactions/hooks';
 import { useCurrencyBalance } from '../state/wallet/hooks';
 import { useActiveWeb3React } from './index';
 import { useWETHContract } from './useContract';
-import { ETH_NAME_AND_SYMBOL } from "../constants";
+import { ETH_NAME_AND_SYMBOL } from "../swapConstants";
 
 export enum WrapType {
   NOT_APPLICABLE,

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,8 +23,9 @@
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
     "types": ["react-spring", "jest"],
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "incremental": false
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/components/Confetti/index.js"]
+  "include": ["src", "images.d.ts"]
 }

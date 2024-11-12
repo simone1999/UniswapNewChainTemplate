@@ -1,28 +1,33 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const VISIBILITY_STATE_SUPPORTED = 'visibilityState' in document;
-
 function isWindowVisible() {
-  return !VISIBILITY_STATE_SUPPORTED || document.visibilityState !== 'hidden';
+  return !('visibilityState' in document) || document.visibilityState !== 'hidden';
 }
 
 /**
  * Returns whether the window is currently visible to the user.
  */
 export default function useIsWindowVisible(): boolean {
-  const [focused, setFocused] = useState<boolean>(isWindowVisible());
-  const listener = useCallback(() => {
-    setFocused(isWindowVisible());
-  }, [setFocused]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (!VISIBILITY_STATE_SUPPORTED) return undefined;
+    setIsClient(true);
+  }, []);
+
+  const [focused, setFocused] = useState<boolean>(!isClient || isWindowVisible());
+  const listener = useCallback(() => {
+    setFocused(!isClient || isWindowVisible());
+  }, [setFocused, isClient]);
+
+  useEffect(() => {
+    if (!isClient) return undefined;
+    if (!('visibilityState' in document)) return undefined;
 
     document.addEventListener('visibilitychange', listener);
     return () => {
       document.removeEventListener('visibilitychange', listener);
     };
-  }, [listener]);
+  }, [listener, isClient]);
 
   return focused;
 }

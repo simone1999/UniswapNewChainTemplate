@@ -7,7 +7,7 @@ import { checkedTransaction, finalizeTransaction } from './actions';
 
 export function shouldCheck(
   lastBlockNumber: number,
-  tx: { addedTime: number; receipt?: {}; lastCheckedBlockNumber?: number }
+  tx: { addedTime: number; receipt?: object; lastCheckedBlockNumber?: number }
 ): boolean {
   if (tx.receipt) return false;
   if (!tx.lastCheckedBlockNumber) return true;
@@ -34,13 +34,13 @@ export default function Updater(): null {
   const dispatch = useDispatch<AppDispatch>();
   const state = useSelector<AppState, AppState['transactions']>((state) => state.transactions);
 
-  const transactions = chainId ? state[chainId] ?? {} : {};
-
   // show popup on confirm
   const addPopup = useAddPopup();
 
   useEffect(() => {
     if (!chainId || !library || !lastBlockNumber) return;
+
+    const transactions = chainId ? state[chainId] ?? {} : {};
 
     Object.keys(transactions)
       .filter((hash) => shouldCheck(lastBlockNumber, transactions[hash]))
@@ -56,12 +56,12 @@ export default function Updater(): null {
                   receipt: {
                     blockHash: receipt.blockHash,
                     blockNumber: receipt.blockNumber,
-                    contractAddress: receipt.contractAddress,
+                    contractAddress: receipt.contractAddress!,
                     from: receipt.from,
-                    status: receipt.status,
-                    to: receipt.to,
-                    transactionHash: receipt.transactionHash,
-                    transactionIndex: receipt.transactionIndex,
+                    status: receipt.status ?? undefined,
+                    to: receipt.to!,
+                    transactionHash: receipt.hash,
+                    transactionIndex: receipt.index,
                   },
                 })
               );
@@ -84,7 +84,7 @@ export default function Updater(): null {
             console.error(`failed to check transaction hash: ${hash}`, error);
           });
       });
-  }, [chainId, library, transactions, lastBlockNumber, dispatch, addPopup]);
+  }, [chainId, state, library, lastBlockNumber, dispatch, addPopup]);
 
   return null;
 }

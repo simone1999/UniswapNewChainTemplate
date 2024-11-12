@@ -1,4 +1,4 @@
-import { Contract } from '@ethersproject/contracts';
+import { Contract } from 'ethers';
 import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useActiveWeb3React } from '../../hooks';
@@ -40,11 +40,11 @@ async function fetchChunk(
     console.debug('Failed to fetch chunk inside retry', error);
     throw error;
   }
-  if (resultsBlockNumber.toNumber() < minBlockNumber) {
+  if (Number(resultsBlockNumber) < minBlockNumber) {
     console.debug(`Fetched results for old block number: ${resultsBlockNumber.toString()} vs. ${minBlockNumber}`);
     throw new RetryableError('Fetched for old block number');
   }
-  return { results: returnData, blockNumber: resultsBlockNumber.toNumber() };
+  return { results: returnData, blockNumber: Number(resultsBlockNumber) };
 }
 
 /**

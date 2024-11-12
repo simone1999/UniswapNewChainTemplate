@@ -1,5 +1,4 @@
 import { JSBI, Token, TokenAmount } from '@uniswap/sdk';
-import { BigNumber } from 'ethers';
 import { STAKING_GENESIS } from '../state/stake/hooks';
 
 const STAKING_END = STAKING_GENESIS + 60 * 60 * 24 * 60;
@@ -34,16 +33,16 @@ const TEAM_YEAR_2_AMOUNT = 120_000_00;
 const TEAM_YEAR_3_AMOUNT = 80_000_00;
 const TEAM_YEAR_4_AMOUNT = 40_000_00;
 
-function withVesting(before: JSBI, time: BigNumber, amount: number, start: number, end: number, cliff?: number) {
-  if (time.gt(start)) {
-    if (time.gte(end)) {
+function withVesting(before: JSBI, time: bigint, amount: number, start: number, end: number, cliff?: number) {
+  if (time > start) {
+    if (time >= end) {
       return JSBI.add(before, JSBI.BigInt(amount));
     } else {
-      if ((typeof cliff === 'number' && time.gte(cliff)) || typeof cliff === 'undefined') {
+      if ((typeof cliff === 'number' && time >= cliff) || typeof cliff === 'undefined') {
         return JSBI.add(
           before,
           JSBI.divide(
-            JSBI.multiply(JSBI.BigInt(amount), JSBI.BigInt(time.sub(start).toString())),
+            JSBI.multiply(JSBI.BigInt(amount), JSBI.BigInt((time - BigInt(start)).toString())),
             JSBI.subtract(JSBI.BigInt(end), JSBI.BigInt(start))
           )
         );
@@ -55,7 +54,7 @@ function withVesting(before: JSBI, time: BigNumber, amount: number, start: numbe
 
 export function computeUniCirculation(
   uni: Token,
-  blockTimestamp: BigNumber,
+  blockTimestamp: bigint,
   unclaimedUni: TokenAmount | undefined
 ): TokenAmount {
   let wholeAmount = JSBI.BigInt(USERS_AMOUNT);

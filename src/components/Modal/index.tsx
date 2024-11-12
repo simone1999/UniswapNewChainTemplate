@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { animated, useTransition, useSpring } from 'react-spring';
+import {animated, useTransition, useSpring} from 'react-spring';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 import { isMobile } from 'react-device-detect';
 import '@reach/dialog/styles.css';
@@ -8,11 +8,10 @@ import { transparentize } from 'polished';
 import { useGesture } from 'react-use-gesture';
 
 const AnimatedDialogOverlay = animated(DialogOverlay);
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const StyledDialogOverlay = styled(AnimatedDialogOverlay)`
   &[data-reach-dialog-overlay] {
     z-index: 2;
-    background-color: transparent;
     overflow: hidden;
 
     display: flex;
@@ -37,7 +36,7 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
     margin: 0 0 2rem 0;
     background-color: ${({ theme }) => theme.bg1};
     box-shadow: 0 4px 8px 0 ${({ theme }) => transparentize(0.95, theme.shadow1)};
-    padding: 0px;
+    padding: 0;
     width: 50vw;
     overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
     overflow-x: hidden;
@@ -122,7 +121,7 @@ export default function Modal({
                 {...(isMobile
                   ? {
                       ...bind(),
-                      style: { transform: y.interpolate((y) => `translateY(${y > 0 ? y : 0}px)`) },
+                      style: { transform: (y as any).interpolate((y: number) => `translateY(${y > 0 ? y : 0}px)`) },
                     }
                   : {})}
                 aria-label="dialog content"

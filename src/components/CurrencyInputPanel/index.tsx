@@ -9,7 +9,8 @@ import DoubleCurrencyLogo from '../DoubleLogo';
 import { RowBetween } from '../Row';
 import { TYPE } from '../../theme';
 import { Input as NumericalInput } from '../NumericalInput';
-import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg';
+import DropDown from 'assets/images/dropdown.svg';
+import Image from 'next/image';
 
 import { useActiveWeb3React } from '../../hooks';
 import { useTranslation } from 'react-i18next';
@@ -33,7 +34,6 @@ const CurrencySelect = styled.button`
   outline: none;
   cursor: pointer;
   user-select: none;
-  border: none;
   padding: 0 0.5rem;
   transition: 0.2s;
 
@@ -62,7 +62,7 @@ const Aligner = styled.span`
   justify-content: space-between;
 `;
 
-const StyledDropDown = styled(DropDown)`
+const StyledDropDown = styled.div`
   margin: 0 0.25rem 0 0.5rem;
   height: 35%;
 
@@ -229,7 +229,11 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || t('Token')}
                 </StyledTokenName>
               )}
-              {!disableCurrencySelect && <StyledDropDown />}
+              {!disableCurrencySelect &&
+                  <StyledDropDown>
+                      <Image src={DropDown} width={12} height={12} alt="DropDown"/>
+                  </StyledDropDown>
+              }
             </Aligner>
           </CurrencySelect>
         </InputRow>

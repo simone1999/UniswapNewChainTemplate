@@ -2,7 +2,7 @@ import { JSBI, Pair, Percent, TokenAmount } from '@uniswap/sdk';
 import { darken } from 'polished';
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'react-feather';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Text } from 'rebass';
 import styled from 'styled-components';
 import { useTotalSupply } from '../../data/TotalSupply';
@@ -22,7 +22,7 @@ import CurrencyLogo from '../CurrencyLogo';
 import DoubleCurrencyLogo from '../DoubleLogo';
 import { RowBetween, RowFixed, AutoRow } from '../Row';
 import { Dots } from '../swap/styleds';
-import { BIG_INT_ZERO } from '../../constants';
+import { BIG_INT_ZERO } from '../../swapConstants';
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -286,33 +286,25 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
 
             {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.raw, BIG_INT_ZERO) && (
               <RowBetween marginTop="10px">
-                <ButtonPrimary
-                  padding="8px"
-                  as={Link}
-                  to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
-                  width="48%"
-                >
-                  Add
-                </ButtonPrimary>
-                <ButtonPrimary
-                  padding="8px"
-                  as={Link}
-                  width="48%"
-                  to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                >
-                  Remove
-                </ButtonPrimary>
+                <Link href={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                  <ButtonPrimary padding="8px" width="48%">
+                    Add
+                  </ButtonPrimary>
+                </Link>
+                <Link href={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                  <ButtonPrimary padding="8px" width="48%">
+                    Remove
+                  </ButtonPrimary>
+                </Link>
+
               </RowBetween>
             )}
             {stakedBalance && JSBI.greaterThan(stakedBalance.raw, BIG_INT_ZERO) && (
-              <ButtonPrimary
-                padding="8px"
-                as={Link}
-                to={`/uni/${currencyId(currency0)}/${currencyId(currency1)}`}
-                width="100%"
-              >
-                Manage Liquidity in Rewards Pool
-              </ButtonPrimary>
+              <Link href={`/uni/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                <ButtonPrimary padding="8px" width="100%">
+                  Manage Liquidity in Rewards Pool
+                </ButtonPrimary>
+              </Link>
             )}
           </AutoColumn>
         )}

@@ -1,5 +1,5 @@
-import React, { HTMLProps, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import React, {AnchorHTMLAttributes, HTMLProps, PropsWithChildren, useCallback} from 'react';
+import Link, { LinkProps } from 'next/link';
 import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
 import { ArrowLeft, X, ExternalLink as LinkIconFeather, Trash } from 'react-feather';
@@ -95,8 +95,8 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
   }
 `;
 
-// An internal link from the react-router-dom library that is correctly styled
-export const StyledInternalLink = styled(Link)`
+// An internal link
+const StyledAnchor = styled.a`
   text-decoration: none;
   cursor: pointer;
   color: ${({ theme }) => theme.primary1};
@@ -115,6 +115,37 @@ export const StyledInternalLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
+type StyledInternalLinkProps = PropsWithChildren<
+  LinkProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps>
+>;
+
+export const StyledInternalLink = (
+  {
+    href,
+    as,
+    replace,
+    scroll,
+    shallow,
+    passHref,
+    prefetch,
+    locale,
+    children,
+    ...anchorProps
+  }: StyledInternalLinkProps) => (
+  <Link
+    href={href}
+    as={as}
+    replace={replace}
+    scroll={scroll}
+    shallow={shallow}
+    passHref={passHref}
+    prefetch={prefetch}
+    locale={locale}
+  >
+    <StyledAnchor {...anchorProps}>{children}</StyledAnchor>
+  </Link>
+);
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -262,7 +293,7 @@ const BackArrowLink = styled(StyledInternalLink)`
 `;
 export function BackArrow({ to }: { to: string }) {
   return (
-    <BackArrowLink to={to}>
+    <BackArrowLink href={to}>
       <ArrowLeft />
     </BackArrowLink>
   );

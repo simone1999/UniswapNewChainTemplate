@@ -1,12 +1,9 @@
-import {Web3Provider} from '@ethersproject/providers';
-import {InjectedConnector} from '@web3-react/injected-connector';
-import {WalletConnectConnector} from '@web3-react/walletconnect-connector';
-import {WalletLinkConnector} from '@web3-react/walletlink-connector';
-// import { PortisConnector } from '@web3-react/portis-connector';
-// import { FortmaticConnector } from './Fortmatic';
+// import {WalletConnectConnector} from '@web3-react/walletconnect-connector';
+// import {WalletLinkConnector} from '@web3-react/walletlink-connector';
 import {NetworkConnector} from './NetworkConnector';
 import {ChainId} from "@uniswap/sdk";
-import {RPC_URLS} from "../constants/rpc";
+import {RPC_URLS} from "../swapConstants/rpc";
+import {QuaiConnector} from "./quais";
 
 // const FORMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 // const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
@@ -22,22 +19,19 @@ export const network = new NetworkConnector({
   defaultChainId: DEFAULT_CHAIN_ID
 });
 
-let networkLibrary: Web3Provider | undefined;
-export function getNetworkLibrary(): Web3Provider {
-  return (networkLibrary = networkLibrary ?? new Web3Provider(network.provider as any));
-}
-
-export const injected = new InjectedConnector({
+export const injected = new QuaiConnector({
   supportedChainIds: [ChainId.QUAI_TESTNET],
 });
 
 // Bitgert only
+/*
 export const walletconnect = new WalletConnectConnector({
   rpc: {[ChainId.QUAI_TESTNET]: RPC_URLS[ChainId.QUAI_TESTNET]},
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000,
 });
+*/
 
 // mainnet only
 // export const fortmatic = new FortmaticConnector({
@@ -52,8 +46,8 @@ export const walletconnect = new WalletConnectConnector({
 // })
 
 // mainnet only
-export const walletlink = new WalletLinkConnector({
-  url: RPC_URLS[DEFAULT_CHAIN_ID],
-  appName: 'IcecreamSwap',
-  // appLogoUrl: '',
-});
+// export const walletlink = new WalletLinkConnector({
+//   url: RPC_URLS[DEFAULT_CHAIN_ID],
+//   appName: 'IcecreamSwap',
+//   // appLogoUrl: '',
+// });

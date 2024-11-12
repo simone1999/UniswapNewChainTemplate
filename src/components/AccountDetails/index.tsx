@@ -9,23 +9,25 @@ import { AutoRow } from '../Row';
 import Copy from './Copy';
 import Transaction from './Transaction';
 
-import { SUPPORTED_WALLETS } from '../../constants';
-import { ReactComponent as Close } from '../../assets/images/x.svg';
+import { SUPPORTED_WALLETS } from '../../swapConstants';
+import Close from 'assets/images/x.svg';
 import { getEtherscanLink } from '../../utils';
 import {
   injected,
-  walletconnect,
-  walletlink,
+  // walletconnect,
+  // walletlink,
   // fortmatic, portis
 } from '../../connectors';
-import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg';
-import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg';
-// import FortmaticIcon from '../../assets/images/fortmaticIcon.png';
-// import PortisIcon from '../../assets/images/portisIcon.png';
+// import CoinbaseWalletIcon from 'assets/images/coinbaseWalletIcon.svg';
+// import WalletConnectIcon from 'assets/images/walletConnectIcon.svg';
+// import FortmaticIcon from 'assets/images/fortmaticIcon.png';
+// import PortisIcon from 'assets/images/portisIcon.png';
 import Identicon from '../Identicon';
 import { ButtonSecondary } from '../Button';
 import { ExternalLink as LinkIcon } from 'react-feather';
 import { ExternalLink, LinkStyledButton, TYPE } from '../../theme';
+import Image from "next/image";
+// import {position} from "polished";
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
@@ -48,7 +50,7 @@ const UpperSection = styled.div`
   }
 
   h5:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 
   h4 {
@@ -82,7 +84,7 @@ const AccountGroupingRow = styled.div`
 
 const AccountSection = styled.div`
   background-color: ${({ theme }) => theme.bg1};
-  padding: 0rem 1rem;
+  padding: 0 1rem;
   ${({ theme }) => theme.mediaWidth.upToMedium`padding: 0rem 1rem 1.5rem 1rem;`};
 `;
 
@@ -140,7 +142,6 @@ const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
   font-size: 0.825rem;
   color: ${({ theme }) => theme.text3};
   margin-left: 1rem;
-  font-size: 0.825rem;
   display: flex;
   :hover {
     color: ${({ theme }) => theme.text2};
@@ -157,7 +158,7 @@ const CloseIcon = styled.div`
   }
 `;
 
-const CloseColor = styled(Close)`
+const CloseColor = styled.div`
   path {
     stroke: ${({ theme }) => theme.text4};
   }
@@ -253,30 +254,30 @@ export default function AccountDetails({
           <Identicon />
         </IconWrapper>
       );
-    } else if (connector === walletconnect) {
-      return (
-        <IconWrapper size={16}>
-          <img src={WalletConnectIcon} alt={'wallet connect logo'} />
-        </IconWrapper>
-      );
-    } else if (connector === walletlink) {
-      return (
-        <IconWrapper size={16}>
-          <img src={CoinbaseWalletIcon} alt={'coinbase wallet logo'} />
-        </IconWrapper>
-      );
-    }
+    // } else if (connector === walletconnect) {
+    //   return (
+    //     <IconWrapper size={16}>
+    //       <Image src={WalletConnectIcon} alt={'wallet connect logo'} width={16} height={16} />
+    //     </IconWrapper>
+    //   );
+    // } else if (connector === walletlink) {
+    //   return (
+    //     <IconWrapper size={16}>
+    //       <Image src={CoinbaseWalletIcon} alt={'coinbase wallet logo'} width={16} height={16} />
+    //     </IconWrapper>
+    //   );
+    // }
     // else if (connector === fortmatic) {
     //   return (
     //     <IconWrapper size={16}>
-    //       <img src={FortmaticIcon} alt={'fortmatic logo'} />
+    //       <Image src={FortmaticIcon} alt={'fortmatic logo'} />
     //     </IconWrapper>
     //   );
     // } else if (connector === portis) {
     //   return (
     //     <>
     //       <IconWrapper size={16}>
-    //         <img src={PortisIcon} alt={'portis logo'} />
+    //         <Image src={PortisIcon} alt={'portis logo'} />
     //         <MainWalletAction
     //           onClick={() => {
     //             portis.portis.showPortis();
@@ -287,7 +288,7 @@ export default function AccountDetails({
     //       </IconWrapper>
     //     </>
     //   );
-    // }
+    }
     return null;
   }
 
@@ -299,7 +300,9 @@ export default function AccountDetails({
     <>
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
-          <CloseColor />
+          <CloseColor>
+            <Image src={Close} height={16} width={16} alt="close" />
+          </CloseColor>
         </CloseIcon>
         <HeaderRow>Account</HeaderRow>
         <AccountSection>
@@ -308,7 +311,7 @@ export default function AccountDetails({
               <AccountGroupingRow>
                 {formatConnectorName()}
                 <div>
-                  {connector !== injected && connector !== walletlink && (
+                  {connector !== injected && /* connector !== walletlink && */ (
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                       onClick={() => {

@@ -2,33 +2,41 @@ import { Currency, ETHER, Token, ChainId as ChainIds, ChainId } from "@uniswap/s
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import EthereumLogo from '../../assets/images/ethereum-logo.png';
-import BitgertLogo from '../../assets/images/bitgert-logo.png';
-import DogeLogo from '../../assets/images/doge-logo.png';
-import DokenLogo from '../../assets/images/doken.png';
-import FuseLogo from '../../assets/images/fuse.svg';
-import QuaiLogo from '../../assets/images/quai-logo.png';
+import EthereumLogo from 'assets/images/ethereum-logo.png';
+import BitgertLogo from 'assets/images/bitgert-logo.png';
+import DogeLogo from 'assets/images/doge-logo.png';
+import DokenLogo from 'assets/images/doken.png';
+import FuseLogo from 'assets/images/fuse.svg';
+import QuaiLogo from 'assets/images/quai-logo.png';
 import useHttpLocations from '../../hooks/useHttpLocations';
 import { useActiveWeb3React } from '../../hooks';
 import { WrappedTokenInfo } from '../../state/lists/hooks';
 import Logo from '../Logo';
 import { NETWORK_LABELS } from "../Header";
+import Image from "next/image";
 
 const getTokenLogoURL = (address: string, chainId: ChainId) =>
   `https://raw.githubusercontent.com/simone1999/trustwallet-assets/master/blockchains/${NETWORK_LABELS[chainId]?.toLowerCase()}/assets/${address}/logo.png`;
 
-const StyledEthereumLogo = styled.img<{ size: string }>`
+const StyledEthereumLogoInner = styled.div<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.075);
   border-radius: 24px;
+  overflow: hidden; /* Ensure the image fits within the rounded borders */
+  display: inline-block;
 `;
+const StyledEthereumLogo = ({ src, size, style }: { src: string; size: string; style?: React.CSSProperties }) => (
+  <StyledEthereumLogoInner size={size} style={style}>
+    <Image src={src} alt="Ethereum Logo" width={size} height={size} objectFit="contain" />
+  </StyledEthereumLogoInner>
+);
 
 const StyledLogo = styled(Logo)<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: ${({ size }) => size};
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.075);
   background-color: ${({ theme }) => theme.white};
 `;
 

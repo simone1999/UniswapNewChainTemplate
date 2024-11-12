@@ -2,24 +2,23 @@ import { Currency, ETHER, JSBI, TokenAmount } from '@uniswap/sdk';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Plus } from 'react-feather';
 import { Text } from 'rebass';
-import { ButtonDropdownLight } from '../../components/Button';
-import { LightCard } from '../../components/Card';
-import { AutoColumn, ColumnCenter } from '../../components/Column';
-import CurrencyLogo from '../../components/CurrencyLogo';
-import { FindPoolTabs } from '../../components/NavigationTabs';
-import { MinimalPositionCard } from '../../components/PositionCard';
-import Row from '../../components/Row';
-import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal';
-import { PairState, usePair } from '../../data/Reserves';
-import { useActiveWeb3React } from '../../hooks';
-import { usePairAdder } from '../../state/user/hooks';
-import { useTokenBalance } from '../../state/wallet/hooks';
-import { StyledInternalLink } from '../../theme';
-import { currencyId } from '../../utils/currencyId';
-import AppBody from '../AppBody';
-import { Dots } from '../Pool/styleds';
-import { BlueCard } from '../../components/Card';
-import { TYPE } from '../../theme';
+import { ButtonDropdownLight } from 'components/Button';
+import { LightCard } from 'components/Card';
+import { AutoColumn, ColumnCenter } from 'components/Column';
+import CurrencyLogo from 'components/CurrencyLogo';
+import { FindPoolTabs } from 'components/NavigationTabs';
+import { MinimalPositionCard } from 'components/PositionCard';
+import Row from 'components/Row';
+import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal';
+import { PairState, usePair } from 'data/Reserves';
+import { useActiveWeb3React } from 'hooks';
+import { usePairAdder } from 'state/user/hooks';
+import { useTokenBalance } from 'state/wallet/hooks';
+import { StyledInternalLink } from 'theme';
+import { currencyId } from 'utils/currencyId';
+import { Dots } from 'components/Liquidity/styleds';
+import { BlueCard } from 'components/Card';
+import { TYPE } from 'theme';
 
 enum Fields {
   TOKEN0 = 0,
@@ -79,7 +78,7 @@ export default function PoolFinder() {
   );
 
   return (
-    <AppBody>
+    <>
       <FindPoolTabs />
       <AutoColumn style={{ padding: '1rem' }} gap="md">
         <BlueCard>
@@ -140,7 +139,7 @@ export default function PoolFinder() {
             <Text textAlign="center" fontWeight={500}>
               Pool Found!
             </Text>
-            <StyledInternalLink to={`/pool`}>
+            <StyledInternalLink href={`/pool`}>
               <Text textAlign="center">Manage this pool.</Text>
             </StyledInternalLink>
           </ColumnCenter>
@@ -154,7 +153,7 @@ export default function PoolFinder() {
               <LightCard padding="45px 10px">
                 <AutoColumn gap="sm" justify="center">
                   <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
-                  <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                  <StyledInternalLink href={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                     <Text textAlign="center">Add liquidity.</Text>
                   </StyledInternalLink>
                 </AutoColumn>
@@ -164,7 +163,7 @@ export default function PoolFinder() {
             <LightCard padding="45px 10px">
               <AutoColumn gap="sm" justify="center">
                 <Text textAlign="center">No pool found.</Text>
-                <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                <StyledInternalLink href={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                   Create pool.
                 </StyledInternalLink>
               </AutoColumn>
@@ -199,6 +198,6 @@ export default function PoolFinder() {
         showCommonBases
         selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
       />
-    </AppBody>
+    </>
   );
 }

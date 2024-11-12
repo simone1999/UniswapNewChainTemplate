@@ -1,22 +1,21 @@
 import React, { useContext, useMemo } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Pair } from '@uniswap/sdk';
-import { Link } from 'react-router-dom';
-import { SwapPoolTabs } from '../../components/NavigationTabs';
-import AppBody from '../AppBody';
-import FullPositionCard from '../../components/PositionCard';
-import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks';
-import { TYPE, HideSmall } from '../../theme';
+import Link from 'next/link';
+import { SwapPoolTabs } from 'components/NavigationTabs';
+import FullPositionCard from 'components/PositionCard';
+import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks';
+import { TYPE, HideSmall } from 'theme';
 import { Text } from 'rebass';
-import Card from '../../components/Card';
-import { RowBetween, RowFixed } from '../../components/Row';
-import { ButtonPrimary } from '../../components/Button';
-import { AutoColumn } from '../../components/Column';
+import Card from 'components/Card';
+import { RowBetween, RowFixed } from 'components/Row';
+import { ButtonPrimary } from 'components/Button';
+import { AutoColumn } from 'components/Column';
 
-import { useActiveWeb3React } from '../../hooks';
-import { usePairs } from '../../data/Reserves';
-import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks';
-import { Dots } from '../../components/swap/styleds';
+import { useActiveWeb3React } from 'hooks';
+import { usePairs } from 'data/Reserves';
+import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks';
+import { Dots } from 'components/swap/styleds';
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -95,57 +94,54 @@ export default function Pool() {
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
 
   return (
-    <AppBody>
-      <PageWrapper>
-        <SwapPoolTabs active={'pool'} />
-        <AutoColumn gap="lg" justify="center">
-          <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
-              <HideSmall>
-                <TYPE.mediumHeader style={{ justifySelf: 'flex-start' }}>
-                  Your liquidity
-                </TYPE.mediumHeader>
-              </HideSmall>
-              <ButtonRow>
-                <ResponsiveButtonPrimary as={Link} padding="6px 10px" to="/create/ETH">
-                  Create a pair
-                </ResponsiveButtonPrimary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 10px" to="/add/ETH">
+    <PageWrapper>
+      <SwapPoolTabs active={'pool'} />
+      <AutoColumn gap="lg" justify="center">
+        <AutoColumn gap="lg" style={{ width: '100%' }}>
+          <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
+            <HideSmall>
+              <TYPE.mediumHeader style={{ justifySelf: 'flex-start' }}>
+                Your liquidity
+              </TYPE.mediumHeader>
+            </HideSmall>
+            <ButtonRow>
+              <Link href="/add">
+                <ResponsiveButtonPrimary id="join-pool-button" padding="6px 10px">
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
                   </Text>
                 </ResponsiveButtonPrimary>
-              </ButtonRow>
-            </TitleRow>
+              </Link>
+            </ButtonRow>
+          </TitleRow>
 
-            {!account ? (
-              <Card padding="40px">
-                <TYPE.body color={theme.text3} textAlign="center">
-                  Connect to a wallet to view your liquidity.
-                </TYPE.body>
-              </Card>
-            ) : v2IsLoading ? (
-              <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
-                  <Dots>Loading</Dots>
-                </TYPE.body>
-              </EmptyProposals>
-            ) : allV2PairsWithLiquidity?.length > 0 ? (
-              <>
-                {allV2PairsWithLiquidity.map((v2Pair) => (
-                  <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
-                ))}
-              </>
-            ) : (
-              <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
-                  No Liquidity found
-                </TYPE.body>
-              </EmptyProposals>
-            )}
-          </AutoColumn>
+          {!account ? (
+            <Card padding="40px">
+              <TYPE.body color={theme.text3} textAlign="center">
+                Connect to a wallet to view your liquidity.
+              </TYPE.body>
+            </Card>
+          ) : v2IsLoading ? (
+            <EmptyProposals>
+              <TYPE.body color={theme.text3} textAlign="center">
+                <Dots>Loading</Dots>
+              </TYPE.body>
+            </EmptyProposals>
+          ) : allV2PairsWithLiquidity?.length > 0 ? (
+            <>
+              {allV2PairsWithLiquidity.map((v2Pair) => (
+                <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
+              ))}
+            </>
+          ) : (
+            <EmptyProposals>
+              <TYPE.body color={theme.text3} textAlign="center">
+                No Liquidity found
+              </TYPE.body>
+            </EmptyProposals>
+          )}
         </AutoColumn>
-      </PageWrapper>
-    </AppBody>
+      </AutoColumn>
+    </PageWrapper>
   );
 }

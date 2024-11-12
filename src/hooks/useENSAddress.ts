@@ -1,4 +1,3 @@
-import { namehash } from 'ethers/lib/utils';
 import { useMemo } from 'react';
 import { useSingleCallResult } from '../state/multicall/hooks';
 import isZero from '../utils/isZero';
@@ -13,8 +12,8 @@ export default function useENSAddress(ensName?: string | null): { loading: boole
   const ensNodeArgument = useMemo(() => {
     if (!debouncedName) return [undefined];
     try {
-      return debouncedName ? [namehash(debouncedName)] : [undefined];
-    } catch (error) {
+      return [undefined];
+    } catch {
       return [undefined];
     }
   }, [debouncedName]);

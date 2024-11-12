@@ -1,6 +1,5 @@
-import { Interface, FunctionFragment } from '@ethersproject/abi';
-import { BigNumber } from '@ethersproject/bignumber';
-import { Contract } from '@ethersproject/contracts';
+import { Interface, FunctionFragment } from 'ethers';
+import { Contract } from 'ethers';
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useActiveWeb3React } from '../../hooks';
@@ -19,7 +18,7 @@ export interface Result extends ReadonlyArray<any> {
   readonly [key: string]: any;
 }
 
-type MethodArg = string | number | BigNumber;
+type MethodArg = string | number | bigint;
 type MethodArgs = Array<MethodArg | MethodArg[]>;
 
 type OptionalMethodInputs = Array<MethodArg | MethodArg[] | undefined> | undefined;
@@ -140,7 +139,7 @@ function toCallState(
   if (success && data) {
     try {
       result = contractInterface.decodeFunctionResult(fragment, data);
-    } catch (error) {
+    } catch {
       console.debug('Result data parsing failed', fragment, data);
       return {
         valid: true,
@@ -166,14 +165,14 @@ export function useSingleContractMultipleData(
   callInputs: OptionalMethodInputs[],
   options?: ListenerOptions
 ): CallState[] {
-  const fragment = useMemo(() => contract?.interface?.getFunction(methodName), [contract, methodName]);
+  const fragment = useMemo(() => contract?.interface?.getFunction(methodName) ?? undefined, [contract, methodName]);
 
   const calls = useMemo(
     () =>
       contract && fragment && callInputs && callInputs.length > 0
         ? callInputs.map<Call>((inputs) => {
             return {
-              address: contract.address,
+              address: contract.target as string,
               callData: contract.interface.encodeFunctionData(fragment, inputs),
             };
           })
@@ -197,7 +196,7 @@ export function useMultipleContractSingleData(
   callInputs?: OptionalMethodInputs,
   options?: ListenerOptions
 ): CallState[] {
-  const fragment = useMemo(() => contractInterface.getFunction(methodName), [contractInterface, methodName]);
+  const fragment = useMemo(() => contractInterface.getFunction(methodName) ?? undefined, [contractInterface, methodName]);
   const callData: string | undefined = useMemo(
     () =>
       fragment && isValidMethodArgs(callInputs)
@@ -236,13 +235,13 @@ export function useSingleCallResult(
   inputs?: OptionalMethodInputs,
   options?: ListenerOptions
 ): CallState {
-  const fragment = useMemo(() => contract?.interface?.getFunction(methodName), [contract, methodName]);
+  const fragment = useMemo(() => contract?.interface?.getFunction(methodName) ?? undefined, [contract, methodName]);
 
   const calls = useMemo<Call[]>(() => {
     return contract && fragment && isValidMethodArgs(inputs)
       ? [
           {
-            address: contract.address,
+            address: contract.target as string,
             callData: contract.interface.encodeFunctionData(fragment, inputs),
           },
         ]

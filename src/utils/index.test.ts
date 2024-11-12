@@ -1,5 +1,4 @@
-import { BigNumber } from '@ethersproject/bignumber';
-import { AddressZero } from '@ethersproject/constants';
+import { ZeroAddress } from 'ethers';
 import { TokenAmount, Token, ChainId, Percent, JSBI } from '@uniswap/sdk';
 
 import {
@@ -35,7 +34,7 @@ describe('utils', () => {
 
   describe('#calculateSlippageAmount', () => {
     it('bounds are correct', () => {
-      const tokenAmount = new TokenAmount(new Token(ChainId.MAINNET, AddressZero, 0), '100');
+      const tokenAmount = new TokenAmount(new Token(ChainId.MAINNET, ZeroAddress, 0), '100');
       expect(() => calculateSlippageAmount(tokenAmount, -1)).toThrow();
       expect(calculateSlippageAmount(tokenAmount, 0).map((bound) => bound.toString())).toEqual(['100', '100']);
       expect(calculateSlippageAmount(tokenAmount, 100).map((bound) => bound.toString())).toEqual(['99', '101']);
@@ -91,8 +90,8 @@ describe('utils', () => {
 
   describe('#calculateGasMargin', () => {
     it('adds 10%', () => {
-      expect(calculateGasMargin(BigNumber.from(1000)).toString()).toEqual('1100');
-      expect(calculateGasMargin(BigNumber.from(50)).toString()).toEqual('55');
+      expect(calculateGasMargin(1000n).toString()).toEqual('1100');
+      expect(calculateGasMargin(50n).toString()).toEqual('55');
     });
   });
 

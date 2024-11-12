@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useActiveWeb3React } from '../../hooks';
+import {useCallback, useEffect, useState} from 'react';
+import {useActiveWeb3React} from '../../hooks';
 import useDebounce from '../../hooks/useDebounce';
 import useIsWindowVisible from '../../hooks/useIsWindowVisible';
-import { updateBlockNumber } from './actions';
-import { useDispatch } from 'react-redux';
-import { ETHER } from "@uniswap/sdk";
-import { ETH_NAME_AND_SYMBOL } from "../../constants";
+import {updateBlockNumber} from './actions';
+import {useDispatch} from 'react-redux';
+import {ETHER} from "@uniswap/sdk";
+import {ETH_NAME_AND_SYMBOL} from "../../swapConstants";
+import {Shard, Zone} from "ethers";
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React();
@@ -38,13 +39,13 @@ export default function Updater(): null {
     setState({ chainId, blockNumber: null });
 
     library
-      .getBlockNumber()
+      .getBlockNumber(Shard.Cyprus1)
       .then(blockNumberCallback)
       .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error));
 
-    library.on('block', blockNumberCallback);
+    library.on('block', blockNumberCallback, Zone.Cyprus1);
     return () => {
-      library.removeListener('block', blockNumberCallback);
+      library.removeListener('block', blockNumberCallback, Zone.Cyprus1);
     };
   }, [dispatch, chainId, library, blockNumberCallback, windowVisible]);
 

@@ -1,6 +1,6 @@
-import { DEFAULT_ACTIVE_LIST_URLS } from './../../constants/lists';
+import { DEFAULT_ACTIVE_LIST_URLS } from '../../swapConstants/lists';
 import { createStore, Store } from 'redux';
-import { DEFAULT_LIST_OF_LISTS } from '../../constants/lists';
+import { DEFAULT_LIST_OF_LISTS } from '../../swapConstants/lists';
 import { updateVersion } from '../global/actions';
 import { fetchTokenList, acceptListUpdate, addList, removeList, enableList } from './actions';
 import reducer, { ListsState } from './reducer';

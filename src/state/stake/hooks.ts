@@ -1,5 +1,5 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH } from '@uniswap/sdk';
-import { DAI, USDC, USDT, WBTC } from '../../constants';
+import { DAI, USDC, USDT, WBTC } from '../../swapConstants';
 import { useActiveWeb3React } from '../../hooks';
 import { tryParseAmount } from '../swap/hooks';
 export const STAKING_GENESIS = 1600387200;

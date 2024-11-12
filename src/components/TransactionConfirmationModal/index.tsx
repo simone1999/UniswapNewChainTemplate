@@ -4,12 +4,12 @@ import styled, { ThemeContext } from 'styled-components';
 import Modal from '../Modal';
 import { ExternalLink } from '../../theme';
 import { Text } from 'rebass';
-import { CloseIcon, CustomLightSpinner } from '../../theme/components';
+import { CloseIcon, CustomLightSpinner } from '../../theme';
 import { RowBetween } from '../Row';
 import { AlertTriangle, ArrowUpCircle } from 'react-feather';
 import { ButtonPrimary } from '../Button';
 import { AutoColumn, ColumnCenter } from '../Column';
-import Circle from '../../assets/images/blue-loader.svg';
+import Circle from 'assets/images/blue-loader.svg';
 
 import { getEtherscanLink } from '../../utils';
 import { useActiveWeb3React } from '../../hooks';

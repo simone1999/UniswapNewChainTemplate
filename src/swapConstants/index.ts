@@ -7,6 +7,7 @@ import {
   // walletconnect,
   // walletlink,
 } from '../connectors';
+import ArrowRight from '../assets/images/arrow-right.svg';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 export const FACTORY_ADDRESS = '0x00188A370494B832710E42267bb8ae831f85b3e7';
@@ -193,7 +194,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
 export interface WalletInfo {
   connector?: AbstractConnector;
   name: string;
-  iconName: string;
+  icon: string;
   description: string;
   href: string | null;
   color: string;
@@ -206,7 +207,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
   INJECTED: {
     connector: injected,
     name: 'Injected',
-    iconName: 'arrow-right.svg',
+    icon: ArrowRight,
     description: 'Injected web3 provider.',
     href: null,
     color: '#010101',

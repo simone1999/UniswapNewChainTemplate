@@ -1,23 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
-import { parse } from 'qs';
+import { useRouter } from 'next/router';
 import { AppDispatch } from '../state';
 import { updateUserDarkMode } from '../state/user/actions';
 
-export default function DarkModeQueryParamReader({ location: { search } }: RouteComponentProps): null {
+export default function DarkModeQueryParamReader(): null {
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   useEffect(() => {
-    if (!search) return;
-    if (search.length < 2) return;
-
-    const parsed = parse(search, {
-      parseArrays: false,
-      ignoreQueryPrefix: true,
-    });
-
-    const theme = parsed.theme;
+    const theme = router.query.theme;
 
     if (typeof theme !== 'string') return;
 
@@ -26,7 +18,7 @@ export default function DarkModeQueryParamReader({ location: { search } }: Route
     } else if (theme.toLowerCase() === 'dark') {
       dispatch(updateUserDarkMode({ userDarkMode: true }));
     }
-  }, [dispatch, search]);
+  }, [dispatch, router.query.theme]); // Depend on router.query.theme to re-run when it changes
 
   return null;
 }

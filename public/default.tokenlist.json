@@ -1,0 +1,41 @@
+{
+  "name": "IcecreamSwap Default",
+  "timestamp": "2022-02-15T18:30:00.000Z",
+  "version": {
+    "major": 10,
+    "minor": 1,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
+  "keywords": [
+    "uniswap",
+    "default"
+  ],
+  "tokens": [
+    {
+      "name": "Wrapped Quai",
+      "address": "0x002fB83542035482ED201ab3d2bcc85Ec2A41f0D",
+      "symbol": "WQUAI",
+      "decimals": 18,
+      "chainId": 9000,
+      "logoURI": ""
+    },
+    {
+      "name": "IceCream",
+      "address": "0x000cFC01FDe5BE0926aD31C427aE3614Bf6AeA9F",
+      "symbol": "ICE",
+      "decimals": 18,
+      "chainId": 9000,
+      "logoURI": ""
+    },
+    {
+      "name": "Tether USD",
+      "address": "0x00401F5Cc432f28Ef80C066Fc38C4BC44CC0DdCf",
+      "symbol": "USDT",
+      "decimals": 18,
+      "chainId": 9000,
+      "logoURI": ""
+    }
+  ]
+}

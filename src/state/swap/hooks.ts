@@ -1,5 +1,5 @@
 import useENS from '../../hooks/useENS';
-import { parseUnits } from '@ethersproject/units';
+import { parseUnits } from 'ethers';
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@uniswap/sdk';
 import { ParsedQs } from 'qs';
 import { useCallback, useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies
 import { SwapState } from './reducer';
 import { useUserSlippageTolerance } from '../user/hooks';
 import { computeSlippageAdjustedAmounts } from '../../utils/prices';
-import { FACTORY_ADDRESS, ROUTER_ADDRESS } from '../../constants';
+import { FACTORY_ADDRESS, ROUTER_ADDRESS } from '../../swapConstants';
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap);

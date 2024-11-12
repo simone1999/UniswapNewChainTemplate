@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@uniswap/sdk';
 import { useMemo } from 'react';
-import ERC20_INTERFACE from '../../constants/abis/erc20';
+import ERC20_INTERFACE from '../../swapConstants/abis/erc20';
 import { useAllTokens } from '../../hooks/Tokens';
 import { useActiveWeb3React } from '../../hooks';
 import { useMulticallContract } from '../../hooks/useContract';
@@ -36,7 +36,7 @@ export function useETHBalances(uncheckedAddresses?: (string | undefined)[]): {
     () =>
       addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
         const value = results?.[i]?.result?.[0];
-        if (value) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()));
+        if (value != null) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()));
         return memo;
       }, {}),
     [addresses, results]
@@ -67,7 +67,7 @@ export function useTokenBalancesWithLoadingIndicator(
         address && validatedTokens.length > 0
           ? validatedTokens.reduce<{ [tokenAddress: string]: TokenAmount | undefined }>((memo, token, i) => {
               const value = balances?.[i]?.result?.[0];
-              const amount = value ? JSBI.BigInt(value.toString()) : undefined;
+              const amount = value != null ? JSBI.BigInt(value.toString()) : undefined;
               if (amount) {
                 memo[token.address] = new TokenAmount(token, amount);
               }

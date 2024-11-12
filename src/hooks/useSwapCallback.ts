@@ -1,14 +1,14 @@
-import { BigNumber } from '@ethersproject/bignumber';
-import { Contract } from '@ethersproject/contracts';
+import { Contract } from 'ethers';
 import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@uniswap/sdk';
 import { useMemo } from 'react';
-import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../constants';
+import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../swapConstants';
 import { useTransactionAdder } from '../state/transactions/hooks';
-import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils';
+import { calculateGasMargin, isAddress, shortenAddress } from '../utils';
 import isZero from '../utils/isZero';
 import { useActiveWeb3React } from './index';
 import useTransactionDeadline from './useTransactionDeadline';
 import useENS from './useENS';
+import {useRouterContract} from "./useContract";
 
 export enum SwapCallbackState {
   INVALID,
@@ -23,7 +23,7 @@ interface SwapCall {
 
 interface SuccessfulCall {
   call: SwapCall;
-  gasEstimate: BigNumber;
+  gasEstimate: bigint;
 }
 
 interface FailedCall {
@@ -44,17 +44,17 @@ function useSwapCallArguments(
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
-  const { account, chainId, library } = useActiveWeb3React();
 
+  const { account } = useActiveWeb3React();
   const { address: recipientAddress } = useENS(recipientAddressOrName);
   const recipient = recipientAddressOrName === null ? account : recipientAddress;
   const deadline = useTransactionDeadline();
+  const routerContract = useRouterContract()
 
   return useMemo(() => {
-    if (!trade || !recipient || !library || !account || !chainId || !deadline) return [];
+    if (!trade || !recipient || !account || !deadline) return [];
 
-    const contract: Contract | null = getRouterContract(chainId, library, account);
-    if (!contract) {
+    if (!routerContract) {
       return [];
     }
 
@@ -65,7 +65,7 @@ function useSwapCallArguments(
         feeOnTransfer: false,
         allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
         recipient,
-        deadline: deadline.toNumber(),
+        deadline: Number(deadline),
       })
     );
 
@@ -75,13 +75,13 @@ function useSwapCallArguments(
           feeOnTransfer: true,
           allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
           recipient,
-          deadline: deadline.toNumber(),
+          deadline: Number(deadline),
         })
       );
     }
 
-    return swapMethods.map((parameters) => ({ parameters, contract }));
-  }, [account, allowedSlippage, chainId, deadline, library, recipient, trade]);
+    return swapMethods.map((parameters) => ({ parameters, contract: routerContract }));
+  }, [account, allowedSlippage, deadline, recipient, trade, routerContract]);
 }
 
 // returns a function that will execute a swap, if the parameters are all valid
@@ -123,7 +123,7 @@ export function useSwapCallback(
             } = call;
             const options = !value || isZero(value) ? {} : { value };
 
-            return contract.estimateGas[methodName](...args, options)
+            return contract[methodName].estimateGas(...args, options)
               .then((gasEstimate) => {
                 return {
                   call,
@@ -133,7 +133,7 @@ export function useSwapCallback(
               .catch((gasError) => {
                 console.debug('Gas estimate failed, trying eth_call to extract error', call);
 
-                return contract.callStatic[methodName](...args, options)
+                return contract[methodName](...args, options, { callStatic: true, ...options })
                   .then((result) => {
                     console.debug('Unexpected successful call after failed estimate gas', call, gasError, result);
                     return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') };

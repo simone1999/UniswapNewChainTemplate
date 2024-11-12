@@ -13,6 +13,9 @@ import multicall from './multicall/reducer';
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists'];
 
+// Check if the code is running on the client side
+const isClient = typeof window !== 'undefined';
+
 const store = configureStore({
   reducer: {
     application,
@@ -26,9 +29,9 @@ const store = configureStore({
   },
   middleware: [
     ...getDefaultMiddleware({ immutableCheck: false, thunk: false, serializableCheck: false }),
-    save({ states: PERSISTED_KEYS }),
+    ...(isClient ? [save({ states: PERSISTED_KEYS })] : []),
   ],
-  preloadedState: load({ states: PERSISTED_KEYS }),
+  preloadedState: isClient ? load({ states: PERSISTED_KEYS }) : undefined,
 });
 
 store.dispatch(updateVersion());

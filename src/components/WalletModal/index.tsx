@@ -4,15 +4,15 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import styled from 'styled-components';
-import MetamaskIcon from '../../assets/images/metamask.png';
-import { ReactComponent as Close } from '../../assets/images/x.svg';
+import MetamaskIcon from 'assets/images/metamask.png';
+import Close from 'assets/images/x.svg';
 import {
   // fortmatic,
   injected,
   // portis
 } from '../../connectors';
 // import { OVERLAY_READY } from '../../connectors/Fortmatic';
-import { SUPPORTED_WALLETS } from '../../constants';
+import { SUPPORTED_WALLETS } from '../../swapConstants';
 import usePrevious from '../../hooks/usePrevious';
 import { ApplicationModal } from '../../state/application/actions';
 import { useModalOpen, useWalletModalToggle } from '../../state/application/hooks';
@@ -22,95 +22,96 @@ import AccountDetails from '../AccountDetails';
 import Modal from '../Modal';
 import Option from './Option';
 import PendingView from './PendingView';
+import Image from "next/image";
 
 const CloseIcon = styled.div`
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
 
-  &:hover {
-    cursor: pointer;
-    opacity: 0.5;
-  }
+    &:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
 `;
 
-const CloseColor = styled(Close)`
+const CloseColor = styled.div`
   path {
     stroke: ${({ theme }) => theme.text4};
   }
 `;
 
 const Wrapper = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap}
-  margin: 0;
-  padding: 0;
-  width: 100%;
+    ${({ theme }) => theme.flexColumnNoWrap}
+    margin: 0;
+    padding: 0;
+    width: 100%;
 `;
 
 const HeaderRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  padding: 1rem 1rem;
-  font-weight: 500;
-  color: ${(props) => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+    ${({ theme }) => theme.flexRowNoWrap};
+    padding: 1rem 1rem;
+    font-weight: 500;
+    color: ${(props) => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
+    ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 1rem;
   `};
 `;
 
 const ContentWrapper = styled.div`
-  background-color: ${({ theme }) => theme.bg2};
-  padding: 2rem;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+    background-color: ${({ theme }) => theme.bg2};
+    padding: 2rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 
-  ${({ theme }) => theme.mediaWidth.upToMedium`padding: 1rem`};
+    ${({ theme }) => theme.mediaWidth.upToMedium`padding: 1rem`};
 `;
 
 const UpperSection = styled.div`
-  position: relative;
+    position: relative;
 
-  h5 {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 400;
-  }
+    h5 {
+        margin: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: 400;
+    }
 
-  h5:last-child {
-    margin-bottom: 0px;
-  }
+    h5:last-child {
+        margin-bottom: 0;
+    }
 
-  h4 {
-    margin-top: 0;
-    font-weight: 500;
-  }
+    h4 {
+        margin-top: 0;
+        font-weight: 500;
+    }
 `;
 
 const Blurb = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+    ${({ theme }) => theme.flexRowNoWrap}
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    ${({ theme }) => theme.mediaWidth.upToMedium`
     margin: 1rem;
     font-size: 12px;
   `};
 `;
 
 const OptionGrid = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+    display: grid;
+    grid-gap: 10px;
+    ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     grid-gap: 10px;
   `};
 `;
 
 const HoverText = styled.div`
-  :hover {
-    cursor: pointer;
-  }
+    :hover {
+        cursor: pointer;
+    }
 `;
 
 const WALLET_VIEWS = {
@@ -121,10 +122,10 @@ const WALLET_VIEWS = {
 };
 
 export default function WalletModal({
-  pendingTransactions,
-  confirmedTransactions,
-  ENSName,
-}: {
+                                      pendingTransactions,
+                                      confirmedTransactions,
+                                      ENSName,
+                                    }: {
   pendingTransactions: string[]; // hashes of pending
   confirmedTransactions: string[]; // hashes of confirmed
   ENSName?: string;
@@ -176,7 +177,7 @@ export default function WalletModal({
       connector.walletConnectProvider = undefined;
     }
 
-    connector &&
+    if (connector) {
       activate(connector, undefined, true).catch((error) => {
         if (error instanceof UnsupportedChainIdError) {
           activate(connector); // a little janky...can't use setError because the connector isn't set
@@ -184,6 +185,7 @@ export default function WalletModal({
           setPendingError(true);
         }
       });
+    }
   };
 
   // close wallet modal if fortmatic modal is active
@@ -209,7 +211,9 @@ export default function WalletModal({
           return (
             <Option
               onClick={() => {
-                option.connector !== connector && !option.href && tryActivation(option.connector);
+                if (option.connector !== connector && !option.href) {
+                  tryActivation(option.connector);
+                }
               }}
               id={`connect-${key}`}
               key={key}
@@ -218,7 +222,7 @@ export default function WalletModal({
               link={option.href}
               header={option.name}
               subheader={null}
-              icon={require('../../assets/images/' + option.iconName)}
+              icon={option.icon}
             />
           );
         }
@@ -262,9 +266,11 @@ export default function WalletModal({
           <Option
             id={`connect-${key}`}
             onClick={() => {
-              option.connector === connector
-                ? setWalletView(WALLET_VIEWS.ACCOUNT)
-                : !option.href && tryActivation(option.connector);
+              if (option.connector === connector) {
+                setWalletView(WALLET_VIEWS.ACCOUNT)
+              } else if (!option.href) {
+                tryActivation(option.connector);
+              }
             }}
             key={key}
             active={option.connector === connector}
@@ -272,7 +278,7 @@ export default function WalletModal({
             link={option.href}
             header={option.name}
             subheader={null} //use option.descriptio to bring back multi-line
-            icon={require('../../assets/images/' + option.iconName)}
+            icon={option.icon}
           />
         )
       );
@@ -284,7 +290,9 @@ export default function WalletModal({
       return (
         <UpperSection>
           <CloseIcon onClick={toggleWalletModal}>
-            <CloseColor />
+            <CloseColor>
+              <Image src={Close} height={16} width={16} alt="close" />
+            </CloseColor>
           </CloseIcon>
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
@@ -311,7 +319,9 @@ export default function WalletModal({
     return (
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
-          <CloseColor />
+          <CloseColor>
+            <Image src={Close} alt="close" width={16} height={16} />
+          </CloseColor>
         </CloseIcon>
         {walletView !== WALLET_VIEWS.ACCOUNT ? (
           <HeaderRow color="blue">

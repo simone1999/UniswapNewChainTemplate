@@ -1,8 +1,8 @@
-import { DEFAULT_ACTIVE_LIST_URLS } from './../../constants/lists';
+import { DEFAULT_ACTIVE_LIST_URLS } from '../../swapConstants/lists';
 import { createReducer } from '@reduxjs/toolkit';
 import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists';
 import { TokenList } from '@uniswap/token-lists/dist/types';
-import { DEFAULT_LIST_OF_LISTS } from '../../constants/lists';
+import { DEFAULT_LIST_OF_LISTS } from '../../swapConstants/lists';
 import { updateVersion } from '../global/actions';
 import { acceptListUpdate, addList, fetchTokenList, removeList, enableList, disableList } from './actions';
 
@@ -48,8 +48,6 @@ export default createReducer(initialState, (builder) =>
   builder
     .addCase(fetchTokenList.pending, (state, { payload: { requestId, url } }) => {
       state.byUrl[url] = {
-        current: null,
-        pendingUpdate: null,
         ...state.byUrl[url],
         loadingRequestId: requestId,
         error: null,

@@ -29,7 +29,7 @@ interface BatchItem {
 }
 
 class MiniRpcProvider implements AsyncSendable {
-  public readonly isMetaMask: false = false;
+  public readonly isMetaMask: boolean = false;
   public readonly chainId: number;
   public readonly url: string;
   public readonly host: string;
@@ -62,7 +62,7 @@ class MiniRpcProvider implements AsyncSendable {
         headers: { 'content-type': 'application/json', accept: 'application/json' },
         body: JSON.stringify(batch.map((item) => item.request)),
       });
-    } catch (error) {
+    } catch {
       batch.forEach(({ reject }) => reject(new Error('Failed to send batch call')));
       return;
     }
@@ -75,7 +75,7 @@ class MiniRpcProvider implements AsyncSendable {
     let json;
     try {
       json = await response.json();
-    } catch (error) {
+    } catch {
       batch.forEach(({ reject }) => reject(new Error('Failed to parse JSON response')));
       return;
     }
@@ -89,14 +89,12 @@ class MiniRpcProvider implements AsyncSendable {
         reject,
         request: { method },
       } = byKey[result.id];
-      if (resolve && reject) {
-        if ('error' in result) {
-          reject(new RequestError(result?.error?.message, result?.error?.code, result?.error?.data));
-        } else if ('result' in result) {
-          resolve(result.result);
-        } else {
-          reject(new RequestError(`Received unexpected JSON-RPC response to ${method} request.`, -32000, result));
-        }
+      if ('error' in result) {
+        reject(new RequestError(result?.error?.message, result?.error?.code, result?.error?.data));
+      } else if ('result' in result) {
+        resolve(result.result);
+      } else {
+        reject(new RequestError(`Received unexpected JSON-RPC response to ${method} request.`, -32000, result));
       }
     }
   };

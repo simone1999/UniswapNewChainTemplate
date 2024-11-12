@@ -1,8 +1,8 @@
-import { MaxUint256 } from '@ethersproject/constants';
-import { TransactionResponse } from '@ethersproject/providers';
+import { MaxUint256 } from 'ethers';
+import { TransactionResponse } from 'ethers';
 import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@uniswap/sdk';
 import { useCallback, useMemo } from 'react';
-import { ROUTER_ADDRESS } from '../constants';
+import { ROUTER_ADDRESS } from '../swapConstants';
 import { useTokenAllowance } from '../data/Allowances';
 import { Field } from '../state/swap/actions';
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks';
@@ -72,10 +72,10 @@ export function useApproveCallback(
     }
 
     let useExact = false;
-    const estimatedGas = await tokenContract.estimateGas.approve(spender, MaxUint256).catch(() => {
+    const estimatedGas = await tokenContract.approve.estimateGas(spender, MaxUint256).catch(() => {
       // general fallback for tokens who restrict approval amounts
       useExact = true;
-      return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString());
+      return tokenContract.approve.estimateGas(spender, amountToApprove.raw.toString());
     });
 
     return tokenContract

@@ -1,16 +1,20 @@
-import { TokenAddressMap, useDefaultTokenList } from './../state/lists/hooks';
-import { parseBytes32String } from '@ethersproject/strings';
-import { Currency, ETHER, Token, currencyEquals } from '@uniswap/sdk';
-import { useMemo } from 'react';
-import { useCombinedActiveList, useCombinedInactiveList } from '../state/lists/hooks';
-import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks';
-import { useUserAddedTokens } from '../state/user/hooks';
-import { isAddress } from '../utils';
+import {
+  TokenAddressMap,
+  useCombinedActiveList,
+  useCombinedInactiveList,
+  useDefaultTokenList
+} from '../state/lists/hooks';
+import {parseBytes32String} from '@ethersproject/strings';
+import {Currency, currencyEquals, ETHER, Token} from '@uniswap/sdk';
+import {useMemo} from 'react';
+import {NEVER_RELOAD, useSingleCallResult} from '../state/multicall/hooks';
+import {useUserAddedTokens} from '../state/user/hooks';
+import {isAddress} from '../utils';
 
-import { useActiveWeb3React } from './index';
-import { useBytes32TokenContract, useTokenContract } from './useContract';
-import { filterTokens } from '../components/SearchModal/filtering';
-import { arrayify } from 'ethers/lib/utils';
+import {useActiveWeb3React} from './index';
+import {useBytes32TokenContract, useTokenContract} from './useContract';
+import {filterTokens} from '../components/SearchModal/filtering';
+import {getBytes} from "ethers";
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
@@ -63,16 +67,14 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
 
   // filter out any token that are on active list
   const activeTokensAddresses = Object.keys(useAllTokens());
-  const filteredInactive = activeTokensAddresses
+  return activeTokensAddresses
     ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
-        if (!activeTokensAddresses.includes(address)) {
-          newMap[address] = inactiveTokens[address];
-        }
-        return newMap;
-      }, {})
+      if (!activeTokensAddresses.includes(address)) {
+        newMap[address] = inactiveTokens[address];
+      }
+      return newMap;
+    }, {})
     : inactiveTokens;
-
-  return filteredInactive;
 }
 
 export function useIsTokenActive(token: Token | undefined | null): boolean {
@@ -94,8 +96,7 @@ export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined
     if (!chainId || searchQuery === '') {
       return undefined;
     } else {
-      const tokens = filterTokens(Object.values(inactiveTokens), searchQuery);
-      return tokens;
+      return filterTokens(Object.values(inactiveTokens), searchQuery);
     }
   }, [chainId, inactiveTokens, searchQuery]);
 }
@@ -118,7 +119,7 @@ function parseStringOrBytes32(str: string | undefined, bytes32: string | undefin
   return str && str.length > 0
     ? str
     : // need to check for proper bytes string and valid terminator
-    bytes32 && BYTES32_REGEX.test(bytes32) && arrayify(bytes32)[31] === 0
+    bytes32 && BYTES32_REGEX.test(bytes32) && getBytes(bytes32)[31] === 0
     ? parseBytes32String(bytes32)
     : defaultValue;
 }

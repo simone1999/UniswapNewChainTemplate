@@ -1,4 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
 import { Token, TokenAmount } from '@uniswap/sdk';
 import { useTokenContract } from '../hooks/useContract';
 import { useSingleCallResult } from '../state/multicall/hooks';
@@ -8,7 +7,7 @@ import { useSingleCallResult } from '../state/multicall/hooks';
 export function useTotalSupply(token?: Token): TokenAmount | undefined {
   const contract = useTokenContract(token?.address, false);
 
-  const totalSupply: BigNumber = useSingleCallResult(contract, 'totalSupply')?.result?.[0];
+  const totalSupply: bigint = useSingleCallResult(contract, 'totalSupply')?.result?.[0];
 
   return token && totalSupply ? new TokenAmount(token, totalSupply.toString()) : undefined;
 }

@@ -1,8 +1,7 @@
 import { ChainId, Pair, Token } from '@uniswap/sdk';
-import flatMap from 'lodash.flatmap';
 import { useCallback, useMemo } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS, LP_TOKEN_NAME, LP_TOKEN_SYMBOL } from '../../constants';
+import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS, LP_TOKEN_NAME, LP_TOKEN_SYMBOL } from '../../swapConstants';
 
 import { useActiveWeb3React } from '../../hooks';
 import { useAllTokens } from '../../hooks/Tokens';
@@ -211,26 +210,24 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   const generatedPairs: [Token, Token][] = useMemo(
     () =>
       chainId
-        ? flatMap(Object.keys(tokens), (tokenAddress) => {
+        ? Object.keys(tokens)
+          .map((tokenAddress) => {
             const token = tokens[tokenAddress];
-            // for each token on the current chain,
-            return (
-              // loop though all bases on the current chain
-              (BASES_TO_TRACK_LIQUIDITY_FOR[chainId] ?? [])
-                // to construct pairs of the given token with each base
-                .map((base) => {
-                  if (base.address === token.address) {
-                    return null;
-                  } else {
-                    return [base, token];
-                  }
-                })
-                .filter((p): p is [Token, Token] => p !== null)
-            );
+            return (BASES_TO_TRACK_LIQUIDITY_FOR[chainId] ?? [])
+              .map((base) => {
+                if (base.address === token.address) {
+                  return null;
+                } else {
+                  return [base, token] as [Token, Token];
+                }
+              })
+              .filter((p): p is [Token, Token] => p !== null);
           })
+          .reduce((acc, val) => acc.concat(val), [])
         : [],
     [tokens, chainId]
   );
+
 
   // pairs saved by users
   const savedSerializedPairs = useSelector<AppState, AppState['user']['pairs']>(({ user: { pairs } }) => pairs);
