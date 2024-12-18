@@ -1598,9 +1598,9 @@
   dependencies:
     openzeppelin-solidity-2.3.0 "npm:openzeppelin-solidity@2.3.0"
 
-"@uniswap/sdk@github:simone1999/icecreamswap-sdk#23fef68325d312742d2b51e4fdb1a0ea8d19aa83":
+"@uniswap/sdk@github:simone1999/icecreamswap-sdk#df9834df526d595330310bff8cf8125c87013c14":
   version "4.1.1"
-  resolved "https://codeload.github.com/simone1999/icecreamswap-sdk/tar.gz/23fef68325d312742d2b51e4fdb1a0ea8d19aa83"
+  resolved "https://codeload.github.com/simone1999/icecreamswap-sdk/tar.gz/df9834df526d595330310bff8cf8125c87013c14"
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

@@ -10,8 +10,8 @@ import {
 import ArrowRight from '../assets/images/arrow-right.svg';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
-export const FACTORY_ADDRESS = '0x00188A370494B832710E42267bb8ae831f85b3e7';
-export const ROUTER_ADDRESS = '0x006f4c46aC890Fb271a3B8540Ab3179268C14EF4';
+export const FACTORY_ADDRESS = '0x001Bc40EA380CaAFaf2Df5B5a1045f9961703ADd';
+export const ROUTER_ADDRESS = '0x0068d290b3edAE6ab4a502b0246ea7f0A587a365';
 
 export const LP_TOKEN_NAME = 'icecreamswap.com LP';
 export const LP_TOKEN_SYMBOL = 'ICELP';
