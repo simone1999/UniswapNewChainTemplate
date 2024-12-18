@@ -9,7 +9,6 @@ import { RowBetween } from '../Row';
 import { AlertTriangle, ArrowUpCircle } from 'react-feather';
 import { ButtonPrimary } from '../Button';
 import { AutoColumn, ColumnCenter } from '../Column';
-import Circle from 'assets/images/blue-loader.svg';
 
 import { getEtherscanLink } from '../../utils';
 import { useActiveWeb3React } from '../../hooks';
@@ -40,7 +39,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
         <ConfirmedIcon>
-          <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
+          <CustomLightSpinner src={"/images/blue-loader.svg"} alt="loader34" size={'90px'} />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
           <Text fontWeight={500} fontSize={20}>

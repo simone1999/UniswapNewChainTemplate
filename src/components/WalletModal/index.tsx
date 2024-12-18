@@ -4,8 +4,6 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import styled from 'styled-components';
-import MetamaskIcon from 'assets/images/metamask.png';
-import Close from 'assets/images/x.svg';
 import {
   // fortmatic,
   injected,
@@ -242,7 +240,7 @@ export default function WalletModal({
                 header={'Install Metamask'}
                 subheader={null}
                 link={'https://metamask.io/'}
-                icon={MetamaskIcon}
+                icon={"/images/metamask.png"}
               />
             );
           } else {
@@ -291,7 +289,7 @@ export default function WalletModal({
         <UpperSection>
           <CloseIcon onClick={toggleWalletModal}>
             <CloseColor>
-              <Image src={Close} height={16} width={16} alt="close" />
+              <Image src={"/images/x.svg"} height={16} width={16} alt="close" />
             </CloseColor>
           </CloseIcon>
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
@@ -320,7 +318,7 @@ export default function WalletModal({
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
           <CloseColor>
-            <Image src={Close} alt="close" width={16} height={16} />
+            <Image src={"/images/x.svg"} alt="close" width={16} height={16} />
           </CloseColor>
         </CloseIcon>
         {walletView !== WALLET_VIEWS.ACCOUNT ? (

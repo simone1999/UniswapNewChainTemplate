@@ -9,7 +9,6 @@ import DoubleCurrencyLogo from '../DoubleLogo';
 import { RowBetween } from '../Row';
 import { TYPE } from '../../theme';
 import { Input as NumericalInput } from '../NumericalInput';
-import DropDown from 'assets/images/dropdown.svg';
 import Image from 'next/image';
 
 import { useActiveWeb3React } from '../../hooks';
@@ -231,7 +230,7 @@ export default function CurrencyInputPanel({
               )}
               {!disableCurrencySelect &&
                   <StyledDropDown>
-                      <Image src={DropDown} width={12} height={12} alt="DropDown"/>
+                      <Image src={"/images/dropdown.svg"} width={12} height={12} alt="DropDown"/>
                   </StyledDropDown>
               }
             </Aligner>

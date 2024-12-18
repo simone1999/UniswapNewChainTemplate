@@ -7,7 +7,6 @@ import { RowBetween } from '../Row';
 import { TYPE, CloseIcon, CustomLightSpinner } from '../../theme';
 import { ArrowUpCircle } from 'react-feather';
 
-import Circle from 'assets/images/blue-loader.svg';
 import { getEtherscanLink } from '../../utils';
 import { ExternalLink } from '../../theme';
 
@@ -28,7 +27,7 @@ export function LoadingView({ children, onDismiss }: { children: any; onDismiss:
         <CloseIcon onClick={onDismiss} />
       </RowBetween>
       <ConfirmedIcon>
-        <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
+        <CustomLightSpinner src={"/images/blue-loader.svg"} alt="loader" size={'90px'} />
       </ConfirmedIcon>
       <AutoColumn gap="100px" justify={'center'}>
         {children}

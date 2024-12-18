@@ -6,8 +6,6 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import Logo from 'assets/svg/logo.svg';
-import LogoDark from 'assets/svg/logo_white.svg';
 import { useActiveWeb3React } from '../../hooks';
 import { useDarkModeManager } from '../../state/user/hooks';
 import { useETHBalances } from '../../state/wallet/hooks';
@@ -292,7 +290,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <Icon>
-            <Image width={'22px'} height={'22px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+            <Image width={'22px'} height={'22px'} src={darkMode ? "/svg/logo_white.svg" : "/svg/logo.svg"} alt="logo" />
           </Icon>
         </Title>
       </HeaderRow>

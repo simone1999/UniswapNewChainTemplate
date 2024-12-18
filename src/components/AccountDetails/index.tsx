@@ -10,7 +10,6 @@ import Copy from './Copy';
 import Transaction from './Transaction';
 
 import { SUPPORTED_WALLETS } from '../../swapConstants';
-import Close from 'assets/images/x.svg';
 import { getEtherscanLink } from '../../utils';
 import {
   injected,
@@ -301,7 +300,7 @@ export default function AccountDetails({
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
           <CloseColor>
-            <Image src={Close} height={16} width={16} alt="close" />
+            <Image src={"/images/x.svg"} height={16} width={16} alt="close" />
           </CloseColor>
         </CloseIcon>
         <HeaderRow>Account</HeaderRow>

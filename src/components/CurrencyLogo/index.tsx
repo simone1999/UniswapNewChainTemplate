@@ -2,12 +2,6 @@ import { Currency, ETHER, Token, ChainId as ChainIds, ChainId } from "@uniswap/s
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import EthereumLogo from 'assets/images/ethereum-logo.png';
-import BitgertLogo from 'assets/images/bitgert-logo.png';
-import DogeLogo from 'assets/images/doge-logo.png';
-import DokenLogo from 'assets/images/doken.png';
-import FuseLogo from 'assets/images/fuse.svg';
-import QuaiLogo from 'assets/images/quai-logo.png';
 import useHttpLocations from '../../hooks/useHttpLocations';
 import { useActiveWeb3React } from '../../hooks';
 import { WrappedTokenInfo } from '../../state/lists/hooks';
@@ -67,17 +61,17 @@ export default function CurrencyLogo({
 
   if (currency === ETHER) {
     if (chainId === ChainIds.BITGERT) {
-      return <StyledEthereumLogo src={BitgertLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"/images/bitgert-logo.png"} size={size} style={style} />;
     } else if (chainId === ChainIds.DOGE) {
-      return <StyledEthereumLogo src={DogeLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"/images/doge-logo.png"} size={size} style={style} />;
     } else if (chainId === ChainIds.DOKEN) {
-      return <StyledEthereumLogo src={DokenLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"assets/images/doken.png"} size={size} style={style} />;
     } else if (chainId === ChainIds.FUSE) {
-      return <StyledEthereumLogo src={FuseLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"/images/fuse.svg"} size={size} style={style} />;
     } else if (chainId === ChainIds.QUAI_TESTNET) {
-      return <StyledEthereumLogo src={QuaiLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"/images/quai-logo.png"} size={size} style={style} />;
     } else {
-      return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />;
+      return <StyledEthereumLogo src={"/images/ethereum-logo.png"} size={size} style={style} />;
     }
   }
 
