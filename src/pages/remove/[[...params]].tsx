@@ -136,7 +136,7 @@ export default function RemoveLiquidity() {
       owner: account,
       spender: ROUTER_ADDRESS,
       value: liquidityAmount.raw.toString(),
-      nonce: nonce.toString(16),
+      nonce: nonce.toString(),
       deadline: Number(deadline),
     };
     const data = JSON.stringify({
@@ -225,7 +225,7 @@ export default function RemoveLiquidity() {
           amountsMin[currencyBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(),
           amountsMin[currencyBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(),
           account,
-          deadline.toString(16),
+          deadline.toString(),
         ];
       }
       // removeLiquidity
@@ -238,7 +238,7 @@ export default function RemoveLiquidity() {
           amountsMin[Field.CURRENCY_A].toString(),
           amountsMin[Field.CURRENCY_B].toString(),
           account,
-          deadline.toString(16),
+          deadline.toString(),
         ];
       }
     }

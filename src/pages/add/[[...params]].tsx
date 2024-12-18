@@ -141,7 +141,7 @@ export default function AddLiquidity() {
         amountsMin[tokenBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(), // token min
         amountsMin[tokenBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(), // eth min
         account,
-        deadline.toString(16),
+        deadline.toString(),
       ];
       value = BigInt((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString());
     } else {
@@ -155,7 +155,7 @@ export default function AddLiquidity() {
         amountsMin[Field.CURRENCY_A].toString(),
         amountsMin[Field.CURRENCY_B].toString(),
         account,
-        deadline.toString(16),
+        deadline.toString(),
       ];
       value = null;
     }
