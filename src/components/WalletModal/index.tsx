@@ -350,8 +350,10 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>New to Ethereum? &nbsp;</span>{' '}
-              <ExternalLink href="https://ethereum.org/wallets/">Learn more about wallets</ExternalLink>
+              <span>New to Quai?</span>{' '}
+              <ExternalLink href="https://docs.qu.ai/learn/use-quai#get-a-quai-wallet">Learn more about Quai wallets</ExternalLink>
+              <span>If you already have a Quai wallet,</span>{' '}
+              <span>please disable your other wallets</span>{' '}
             </Blurb>
           )}
         </ContentWrapper>
