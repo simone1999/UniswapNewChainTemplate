@@ -68,7 +68,7 @@ export default function CurrencyLogo({
       return <StyledEthereumLogo src={"assets/images/doken.png"} size={size} style={style} />;
     } else if (chainId === ChainIds.FUSE) {
       return <StyledEthereumLogo src={"/images/fuse.svg"} size={size} style={style} />;
-    } else if (chainId === ChainIds.QUAI_TESTNET) {
+    } else if (chainId === ChainIds.QUAI) {
       return <StyledEthereumLogo src={"/images/quai-logo.png"} size={size} style={style} />;
     } else {
       return <StyledEthereumLogo src={"/images/ethereum-logo.png"} size={size} style={style} />;

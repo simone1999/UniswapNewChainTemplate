@@ -9,8 +9,8 @@ import {
 } from '../connectors';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
-export const FACTORY_ADDRESS = '0x001Bc40EA380CaAFaf2Df5B5a1045f9961703ADd';
-export const ROUTER_ADDRESS = '0x0068d290b3edAE6ab4a502b0246ea7f0A587a365';
+export const FACTORY_ADDRESS = '0x007bee8A7DFC1c6e9f57485cd7cEB2efc9294512';
+export const ROUTER_ADDRESS = '0x003CdF9822C7FafA0b41122ad5365161E2288d5C';
 
 export const LP_TOKEN_NAME = 'icecreamswap.com LP';
 export const LP_TOKEN_SYMBOL = 'ICELP';
@@ -76,10 +76,6 @@ export const FUSE_ICE = new Token(ChainId.FUSE, '0x867f08A3ab824b42e8058a1B48e32
 export const FUSE_DOGE = new Token(ChainId.FUSE, '0x12AA82525DEfF84777fa78578A68ceB854A85f43', 18, 'DOGE', 'DogeCoin');
 export const FUSE_SHIB = new Token(ChainId.FUSE, '0x8687cD1d02A28098571067ddB18F33fEF667C929', 18, 'SHIB', 'Shiba Inu');
 
-export const QUAI_ICE = new Token(ChainId.QUAI_TESTNET, '0x000cFC01FDe5BE0926aD31C427aE3614Bf6AeA9F', 18, 'ICE', 'IceCream');
-export const QUAI_USDT = new Token(ChainId.QUAI_TESTNET, '0x00401F5Cc432f28Ef80C066Fc38C4BC44CC0DdCf', 18, 'USDT', 'Tether USD');
-
-
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13;
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320;
@@ -100,7 +96,7 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.DOGE]: [WETH[ChainId.DOGE]],
   [ChainId.DOKEN]: [WETH[ChainId.DOKEN]],
   [ChainId.FUSE]: [WETH[ChainId.FUSE]],
-  [ChainId.QUAI_TESTNET]: [WETH[ChainId.QUAI_TESTNET]],
+  [ChainId.QUAI]: [WETH[ChainId.QUAI]],
 };
 
 export const ETH_NAME_AND_SYMBOL = {
@@ -113,7 +109,7 @@ export const ETH_NAME_AND_SYMBOL = {
   [ChainId.DOGE]: {"name": "Dogecoin", "symbol": "DOGE"},
   [ChainId.DOKEN]: {"name": "DoKEN", "symbol": "DKN"},
   [ChainId.FUSE]: {"name": "Fuse", "symbol": "FUSE"},
-  [ChainId.QUAI_TESTNET]: {"name": "Quai", "symbol": "Quai"},
+  [ChainId.QUAI]: {"name": "Quai", "symbol": "Quai"},
 }
 
 // used to construct intermediary pairs for trading
@@ -124,7 +120,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE, DOKEN_USDT],
   [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE],
-  [ChainId.QUAI_TESTNET]: [...WETH_ONLY[ChainId.QUAI_TESTNET], QUAI_ICE, QUAI_USDT],
+  [ChainId.QUAI]: [...WETH_ONLY[ChainId.QUAI]],
 };
 
 /**
@@ -145,7 +141,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE],
   [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE],
-  [ChainId.QUAI_TESTNET]: [QUAI_ICE, QUAI_USDT]
+  [ChainId.QUAI]: [...WETH_ONLY[ChainId.QUAI]]
 };
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -160,7 +156,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.DOGE]: [...WETH_ONLY[ChainId.DOGE], DOGE_ICE],
   [ChainId.DOKEN]: [...WETH_ONLY[ChainId.DOKEN], DOKEN_ICE, DOKEN_USDT],
   [ChainId.FUSE]: [...WETH_ONLY[ChainId.FUSE], FUSE_ICE, FUSE_DOGE, FUSE_SHIB],
-  [ChainId.QUAI_TESTNET]: [...WETH_ONLY[ChainId.QUAI_TESTNET], QUAI_ICE, QUAI_USDT],
+  [ChainId.QUAI]: [...WETH_ONLY[ChainId.QUAI]],
 };
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -184,9 +180,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   [ChainId.FUSE]: [
     [WETH[ChainId.FUSE], FUSE_ICE],
   ],
-  [ChainId.QUAI_TESTNET]: [
-    [WETH[ChainId.QUAI_TESTNET], QUAI_USDT],
-    [WETH[ChainId.QUAI_TESTNET], QUAI_ICE],
+  [ChainId.QUAI]: [
   ]
 };
 

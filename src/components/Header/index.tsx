@@ -275,7 +275,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.DOGE]: 'DOGE',
   [ChainId.DOKEN]: 'DOKEN',
   [ChainId.FUSE]: 'FUSE',
-  [ChainId.QUAI_TESTNET]: 'Quai-Testnet',
+  [ChainId.QUAI]: 'Quai',
 };
 
 export default function Header() {

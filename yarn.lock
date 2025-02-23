@@ -1606,9 +1606,9 @@
   dependencies:
     openzeppelin-solidity-2.3.0 "npm:openzeppelin-solidity@2.3.0"
 
-"@uniswap/sdk@github:simone1999/icecreamswap-sdk#df9834df526d595330310bff8cf8125c87013c14":
+"@uniswap/sdk@github:simone1999/icecreamswap-sdk#3199e4eb05647530610d2805774b6cacc713dae2":
   version "4.1.1"
-  resolved "https://codeload.github.com/simone1999/icecreamswap-sdk/tar.gz/df9834df526d595330310bff8cf8125c87013c14"
+  resolved "https://codeload.github.com/simone1999/icecreamswap-sdk/tar.gz/3199e4eb05647530610d2805774b6cacc713dae2"
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
@@ -4459,10 +4459,10 @@ ethereumjs-wallet@^1.0.1:
     utf8 "^3.0.0"
     uuid "^8.3.2"
 
-"ethers@npm:quais@^1.0.0-alpha.23":
-  version "1.0.0-alpha.31"
-  resolved "https://registry.yarnpkg.com/quais/-/quais-1.0.0-alpha.31.tgz#beb13a87f8ce819fa374bf933ceef53c4f320a36"
-  integrity sha512-54El5daRZPtfIIVteDGeDMRZaRwnhC4wvfp49/5vuiCN0V7VZqQdgv3YQJ/4NlHG3kzZad0QqquIKm1xrVo5TQ==
+"ethers@npm:quais@^1.0.0-alpha.40":
+  version "1.0.0-alpha.40"
+  resolved "https://registry.yarnpkg.com/quais/-/quais-1.0.0-alpha.40.tgz#759b47c255be8ee7de12caebd21768ed2b007476"
+  integrity sha512-ljSqawm3Bz44vtCKzJihRl/Z+IKlka9M8uFOqo3NI2UOx1lPzxK5qgSBbnZIasYc8NGGd7uaAVk5gPwZtR506Q==
   dependencies:
     "@bitcoinerlab/secp256k1" "^1.1.1"
     "@brandonblack/musig" "^0.0.1-alpha.1"

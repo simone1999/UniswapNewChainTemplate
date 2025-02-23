@@ -8,7 +8,7 @@ import {QuaiConnector} from "./quais";
 // const FORMATIC_KEY = process.env.REACT_APP_FORTMATIC_KEY
 // const PORTIS_ID = process.env.REACT_APP_PORTIS_ID
 
-export const DEFAULT_CHAIN_ID: ChainId = ChainId.QUAI_TESTNET
+export const DEFAULT_CHAIN_ID: ChainId = ChainId.QUAI
 
 if (RPC_URLS[DEFAULT_CHAIN_ID] === "") {
   throw new Error(`RPC must be defined for DEFAULT_CHAIN_ID=` + DEFAULT_CHAIN_ID);
@@ -20,13 +20,13 @@ export const network = new NetworkConnector({
 });
 
 export const injected = new QuaiConnector({
-  supportedChainIds: [ChainId.QUAI_TESTNET],
+  supportedChainIds: [ChainId.QUAI],
 });
 
 // Bitgert only
 /*
 export const walletconnect = new WalletConnectConnector({
-  rpc: {[ChainId.QUAI_TESTNET]: RPC_URLS[ChainId.QUAI_TESTNET]},
+  rpc: {[ChainId.QUAI]: RPC_URLS[ChainId.QUAI_TESTNET]},
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000,
