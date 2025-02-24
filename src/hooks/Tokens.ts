@@ -161,7 +161,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
       return new Token(
         chainId,
         address,
-        decimals.result[0],
+        Number(decimals.result[0]),
         parseStringOrBytes32(symbol.result?.[0], symbolBytes32.result?.[0], 'UNKNOWN'),
         parseStringOrBytes32(tokenName.result?.[0], tokenNameBytes32.result?.[0], 'Unknown Token')
       );
